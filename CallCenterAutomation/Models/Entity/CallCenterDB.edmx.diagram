@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e2260f838e9d434590c9df61c7e400e3" Name="Diagram1" ZoomLevel="36">
+        <EntityTypeShape EntityType="CallCenterAutomationModel.BANKACCOUNTTYPE" Width="1.5" PointX="3.75" PointY="17" />
+        <EntityTypeShape EntityType="CallCenterAutomationModel.BANK" Width="1.5" PointX="3.75" PointY="24.5" />
+        <EntityTypeShape EntityType="CallCenterAutomationModel.COMPANy" Width="1.5" PointX="3.75" PointY="29.625" />
+        <EntityTypeShape EntityType="CallCenterAutomationModel.DEPARTMENT" Width="1.5" PointX="0.75" PointY="10.5" />
+        <EntityTypeShape EntityType="CallCenterAutomationModel.EDUCATIONSTATUS" Width="1.5" PointX="3.75" PointY="1.875" />
+        <EntityTypeShape EntityType="CallCenterAutomationModel.EMPLOYEE" Width="1.5" PointX="6" PointY="8" />
+        <EntityTypeShape EntityType="CallCenterAutomationModel.EMPLOYEETITLE" Width="1.5" PointX="3.75" PointY="27.125" />
+        <EntityTypeShape EntityType="CallCenterAutomationModel.EXPECTATION" Width="1.5" PointX="3" PointY="10.25" />
+        <EntityTypeShape EntityType="CallCenterAutomationModel.MARRIAGESTATUS" Width="1.5" PointX="3.75" PointY="22" />
+        <EntityTypeShape EntityType="CallCenterAutomationModel.PAYMENT" Width="1.5" PointX="3" PointY="6.25" />
+        <EntityTypeShape EntityType="CallCenterAutomationModel.PROXIMITYDEGREE" Width="1.5" PointX="3.75" PointY="14.375" />
+        <EntityTypeShape EntityType="CallCenterAutomationModel.REQUESTHEADER" Width="1.5" PointX="11.25" PointY="13.875" />
+        <EntityTypeShape EntityType="CallCenterAutomationModel.REQUESTPROCESS" Width="1.5" PointX="15.75" PointY="10.5" />
+        <EntityTypeShape EntityType="CallCenterAutomationModel.REQUEST" Width="1.5" PointX="13.5" PointY="9.875" />
+        <EntityTypeShape EntityType="CallCenterAutomationModel.REQUESTSTATUS" Width="1.5" PointX="11.25" PointY="4.25" />
+        <EntityTypeShape EntityType="CallCenterAutomationModel.ROLEMASTER" Width="1.5" PointX="8.25" PointY="14.75" />
+        <EntityTypeShape EntityType="CallCenterAutomationModel.TASKPROCESS" Width="1.5" PointX="10.5" PointY="7.5" />
+        <EntityTypeShape EntityType="CallCenterAutomationModel.TASKSTATUS" Width="1.5" PointX="6" PointY="4.875" />
+        <EntityTypeShape EntityType="CallCenterAutomationModel.USERROLEMAPPING" Width="1.5" PointX="10.5" PointY="10.5" />
+        <EntityTypeShape EntityType="CallCenterAutomationModel.USER" Width="1.5" PointX="8.25" PointY="10" />
+        <EntityTypeShape EntityType="CallCenterAutomationModel.WORKINGSTATUS" Width="1.5" PointX="3.75" PointY="19.5" />
+        <AssociationConnector Association="CallCenterAutomationModel.FK_TBL_EMPLOYEE_TBL_BANKACCOUNTTYPE" />
+        <AssociationConnector Association="CallCenterAutomationModel.FK_TBL_EMPLOYEE_TBL_BANK" />
+        <AssociationConnector Association="CallCenterAutomationModel.FK_TBL_EMPLOYEE_TBL_COMPANY" />
+        <AssociationConnector Association="CallCenterAutomationModel.FK_EXPECTATIONS_DEPARTMENTS" />
+        <AssociationConnector Association="CallCenterAutomationModel.FK_PAYMENTS_DEPARTMENTS" />
+        <AssociationConnector Association="CallCenterAutomationModel.FK_TBL_EMPLOYEE_TBL_DEPARTMENT" />
+        <AssociationConnector Association="CallCenterAutomationModel.FK_TBL_EMPLOYEE_TBL_EDUCATIONSTATUS" />
+        <AssociationConnector Association="CallCenterAutomationModel.FK_TBL_EMPLOYEE_TBL_EMPLOYEETITLE" />
+        <AssociationConnector Association="CallCenterAutomationModel.FK_TBL_EMPLOYEE_TBL_MARRIAGESTATUS" />
+        <AssociationConnector Association="CallCenterAutomationModel.FK_TBL_EMPLOYEE_TBL_PROXIMITYDEGREE" />
+        <AssociationConnector Association="CallCenterAutomationModel.FK_TBL_EMPLOYEE_TBL_WORKINGSTATUS" />
+        <AssociationConnector Association="CallCenterAutomationModel.FK_USERS_EMPLOYEES" />
+        <AssociationConnector Association="CallCenterAutomationModel.FK_EXPECTATIONS_USERS" />
+        <AssociationConnector Association="CallCenterAutomationModel.FK_PAYMENTS_USERS" />
+        <AssociationConnector Association="CallCenterAutomationModel.FK_REQUESTS_REQUESTHEADERS" />
+        <AssociationConnector Association="CallCenterAutomationModel.FK_REQUESTPROCESSES_REQUESTS" />
+        <AssociationConnector Association="CallCenterAutomationModel.FK_REQUESTPROCESSES_USERS" />
+        <AssociationConnector Association="CallCenterAutomationModel.FK_REQUESTS_REQUESTSTATUSES" />
+        <AssociationConnector Association="CallCenterAutomationModel.FK_REQUESTS_USERS" />
+        <AssociationConnector Association="CallCenterAutomationModel.FK_TBL_USERROLEMAPPING_TBL_ROLEMASTER" />
+        <AssociationConnector Association="CallCenterAutomationModel.FK_TASKPROCESSES_USERS" />
+        <AssociationConnector Association="CallCenterAutomationModel.FK_TBL_USERROLEMAPPING_TBL_USER" />
+        <EntityTypeShape EntityType="CallCenterAutomationModel.TASK" Width="1.5" PointX="8.25" PointY="4.375" />
+        <AssociationConnector Association="CallCenterAutomationModel.FK_TASKPROCESSES_TASKS" />
+        <AssociationConnector Association="CallCenterAutomationModel.FK_TASKS_TASKSTATUSES" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

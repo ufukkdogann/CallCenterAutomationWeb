@@ -1,0 +1,39 @@
+﻿@using CallCenterAutomation.Models.Entity
+@model List<EXPECTATION>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var loginUserNameSurname = Session["LoginUserNameSurname"];
+    var loginUserDepartmentID = (int)Session["LoginUserDepartmentID"];
+    var loginUserID = (int)Session["LoginUserID"];
+}
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h4> Özet Bilgiler </h4><h2>  </h2>
+            </div>
+
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="col-md-12 col-sm-12 ">
+
+            <!-- top tiles -->
+            <div class="row" style="display: inline-block;">
+                <div class="tile_count">
+                    <div class="col-md-2 col-sm-4  tile_stats_count">
+                        <span class="count_top"><i class="fa fa-user"></i> Toplam Beklenti </span>
+
+                        <div class="count">@Model.Where(x => x.DateTime == DateTime.Today).Sum(x => x.ExpectationAmount)</div>
+                        <span class="count_bottom"><i class="green">4% </i> From last Week</span>
+                    </div>
+
+                </div>
+            </div>
+            <!-- /top tiles -->
+        </div>
+
+    </div>
+</div>

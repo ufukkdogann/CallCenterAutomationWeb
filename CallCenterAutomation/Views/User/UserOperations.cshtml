@@ -1,0 +1,213 @@
+﻿@using CallCenterAutomation.ViewModels
+@model UserForViewModel
+
+@{
+    ViewBag.Title = "UserOperations";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var loginUserNameSurname = Session["LoginUserNameSurname"];
+    var loginUserDepartmentID = (int)Session["LoginUserDepartmentID"];
+    var loginUserID = (int)Session["LoginUserID"];
+    var rolemapping = Model.userRoleMappingList;
+}
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>@ViewBag.UserOperations</h3>
+
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2> <small>Kullanıcı işlemlerini bu sayfadan gerçekleştirebilirsiniz.</small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <br />
+                    <div class="x_content">
+                        @using (Html.BeginForm("UserOperations", "User", FormMethod.Post))
+                        {
+                            if (Model.employeeList.Count == 0)
+                            {
+                                <h2> <small>Kullanıcısı olmayan personel yoktur.</small></h2>
+                            }
+                            else
+                            {
+                                if (Model.user != null)
+                                {
+                                    <div>
+                                        <label class="control-label col-md-12 col-sm-12" style="font-size:140%;">Personel</label>
+                                        <div class="col-md-6 col-sm-6 ">
+                                            @Html.DropDownListFor(m => m.user.EmployeeID, new SelectList(Model.employeeList, "ID", "FullName"), new { @disabled = "disabled", @class = "form-control", @style = "float: right;text-align: right" })
+                                            @Html.HiddenFor(m => m.user.EmployeeID)
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                        @Html.TextBoxFor(m => m.user.Username, new { @id = "username", @class = "form-control has-feedback-left", @PlaceHolder = "Kullanıcı Adı", @required = "", @onchange = "UserCheck()" })
+                                        @Html.ValidationMessageFor(m => m.user.Username, "", new { style = "color:red" })
+                                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                                        <div class="row">
+                                            <label class="col-sm-2"></label>
+                                            <div class="col-sd-10">
+                                                <p id="Status" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                        @Html.TextBoxFor(m => m.user.Password, new { @class = "form-control has-feedback-left", type = "password", @PlaceHolder = "Parola", @required = "" })
+                                        @Html.ValidationMessageFor(m => m.user.Password, "", new { style = "color:red" })
+
+                                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+
+                                    <div class="col-md-12 col-sm-12  form-group has-feedback">
+                                        <div>
+                                            <h2 style="font-size:175%;">Aktiflik Durumu</h2>
+                                            <div style="font-size:150%;">
+
+                                                @Html.CheckBoxFor(model => model.user.isActive, new { style = "width:50px;height:25px" })
+                                                <label>Aktif mi?</label>
+                                                @Html.HiddenFor(model => model.user.ID)
+                                                @Html.HiddenFor(model => model.user.Username)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12  form-group has-feedback">
+                                        <h2 style="font-size:175%;"><label class="control-label ">Yetkilendirme</label></h2>
+                                        <table>
+                                            @for (int i = 0; i < Model.roleMasterList.Count; i++)
+                                            {
+                                                if (i % 1 == 0)
+                                                {
+                                                    @:<tr></tr>
+                                                }
+                                                <td>
+                                                    @Html.CheckBoxFor(model => model.userRoleMappingList[i].isActive, new { style = "width:50px;height:25px" })
+                                                    <label style="font-size:150%;">@Model.roleMasterList[i].RoleName</label>
+                                                    @Html.HiddenFor(model => model.userRoleMappingList[i].ID)
+
+                                                </td>
+                                            }
+                                        </table>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div class="col-md-12 col-sm-12 form-group has-feedback">
+                                        <br />
+                                        @*Buton Alanı*@
+                                        @*<div class="ln_solid"></div>*@
+                                        <div class="form-group row">
+                                            <div class="offset-md-5">
+                                                <button onclick="window.location.href = '/User/UserAllList';" type="button" class="btn btn-secondary">Geri Dön</button>
+                                                <button class="btn btn-primary" type="reset">Temizle</button>
+                                                @Html.HiddenFor(m => m.user.ID)
+                                                <button type="submit" class="btn btn-success">Kaydet</button>
+                                            </div>
+                                        </div>
+                                        @*Buton Alanı*@
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div>
+                                        <label class="control-label col-md-12 col-sm-12 ">Personel Seçiniz</label>
+                                        <div class="col-md-6 col-sm-6 ">
+                                            @Html.DropDownListFor(m => m.user.EmployeeID, new SelectList(Model.employeeList, "ID", "FullName"), new { @class = "form-control", @style = "float: right;text-align: right" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                        @Html.TextBoxFor(m => m.user.Username, new { @id = "username", @class = "form-control has-feedback-left", @PlaceHolder = "Kullanıcı Adı", @required = "", @onchange = "UserCheck()" })
+                                        @Html.ValidationMessageFor(m => m.user.Username, "", new { style = "color:red" })
+                                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                                        <div class="row">
+                                            <label class="col-sm-1"></label>
+                                            <div class="col-sd-11">
+                                                <p id="Status" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                        @Html.TextBoxFor(m => m.user.Password, new { @class = "form-control has-feedback-left", type = "password", @PlaceHolder = "Parola", @required = "" })
+                                        @Html.ValidationMessageFor(m => m.user.Password, "", new { style = "color:red" })
+
+                                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div>
+                                            <h2 style="font-size:175%;">Aktiflik Durumu</h2>
+                                            <div style="font-size:150%;">
+                                                <table>
+                                                    <td>
+                                                        @Html.CheckBoxFor(model => model.user.isActive, new { style = "width:50px;height:25px" })
+                                                        <label>Aktif mi?</label>
+                                                        @Html.HiddenFor(model => model.user.ID)
+                                                        @Html.HiddenFor(model => model.user.Username)
+                                                    </td>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <div class="col-md-12 col-sm-12  form-group has-feedback">
+                                    </div>
+                                    <div class="form-group">
+                                        <br />
+                                        @*Buton Alanı*@
+                                        @*<div class="ln_solid"></div>*@
+                                        <div class="form-group row">
+                                            <div class="offset-md-5">
+                                                <button onclick="window.location.href = '/User/UserAllList';" type="button" class="btn btn-secondary">Geri Dön</button>
+                                                <button class="btn btn-primary" type="reset">Temizle</button>
+                                                @Html.HiddenFor(m => m.user.ID)
+                                                <button type="submit" class="btn btn-success">Kaydet</button>
+                                            </div>
+                                        </div>
+                                        @*Buton Alanı*@
+                                    </div>
+                                }
+                            }
+
+                        }
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function UserCheck()
+    {
+        $("#Status").html("Checking...");
+        $.post("@Url.Action("CheckUsernameAvailability","User")",
+            {
+                username: $("#username").val()
+            },
+            function (data) {
+                if (data == 0) {
+                    $("#Status").html('<font color="Green">Kullanılabilir kullanıcı adı!</font>');
+                    $('#username').css("border-color", "Green");
+
+                }
+                else {
+                    $("#Status").html('<font color="Red">Bu kullanıcı adı başka bir kullanıcı için kullanılıyor. Bilgileri kaydederseniz bu kullanıcı adı şu an işlem yaptığınız kullanıcı ile eşleşmeyecektir!</font>');
+                    $('#username').css("border-color", "Red");
+                }
+            });
+    }
+</script>

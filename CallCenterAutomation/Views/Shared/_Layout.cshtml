@@ -1,0 +1,335 @@
+﻿@using CallCenterAutomation.ViewModels
+@{
+
+    var loginUserNameSurname = Session["LoginEmployeeNameSurname"];
+    var loginUserDepartmentID = (int)Session["LoginUserDepartmentID"];
+    var loginUserID = (int)Session["LoginUserID"];
+    var loginUserDepartmentName = Session["LoginUserDepartmentName"];
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="images/favicon.ico" type="image/ico" />
+
+    <title>Call Center ERP</title>
+
+    <!-- Bootstrap -->
+    <link href="~/CSS/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="~/Fonts/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="~/CSS/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="~/CSS/green.css" rel="stylesheet">
+
+    <!-- bootstrap-progressbar -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="~/Scripts/jqvmap/dist/jquery.vmap.js" rel="stylesheet" />
+    <!-- bootstrap-daterangepicker -->
+    <link href="~/CSS/daterangepicker.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="~/CSS/custom.min.css" rel="stylesheet">
+    <!-- Dashboard small box -->
+    <link href="~/CSS/default.css" rel="stylesheet" />
+    <!-- Datatables -->
+
+    <link src="~/Scripts/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link src="~/Scripts/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link src="~/Scripts/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link src="~/Scripts/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link src="~/Scripts/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+
+
+                    <div class="clearfix"></div>
+
+                    <br />
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            <h3>Menü</h3>
+                            <ul class="nav side-menu">
+                                @if (User.IsInRole("Ana Sayfa-True"))
+                                {
+                                    <li>
+                                        <a href="/Main/Index"><i class="fa fa-home"></i> Ana Sayfa <span></span></a>
+                                    </li>
+                                }
+                                @if (User.IsInRole("Arıza/Talep Ekle-True") || User.IsInRole("Benim Taleplerim/Arızalarım-True") || User.IsInRole("Tüm Talepler/Arıza Kayıtları-True") || User.IsInRole("Talep/Arıza Kaydı Detayları-True") || User.IsInRole("Arıza/Talep İşlemleri-True") || User.IsInRole("Arıza/Talep Süreç İşlemleri-True") || User.IsInRole("Süreç Silme-True") || User.IsInRole("Departman Arıza Kaydı/Talepler-True") || User.IsInRole("Tüm Beklentiler Listesi-True") || User.IsInRole("Tüm Ödemeler Listesi-True") || User.IsInRole("Beklenti İşlemleri-True") || User.IsInRole("Ödeme İşlemleri-True") || User.IsInRole("Bugüne Ait Beklenti Listesi-True") || User.IsInRole("Bugüne Ait Ödeme Listesi-True") || User.IsInRole("Tahsilat İşlemleri - Özet Bilgi-True") || User.IsInRole("Görev İşlemleri-True") || User.IsInRole("Görev Listesi-True"))
+                                {
+                                    <li>
+                                        @if (User.IsInRole("Görev Listesi-True") || User.IsInRole("Görev İşlemleri-True"))
+                                        {
+                                            <a><i class="fa fa-archive"></i> Görev Takip İşlemleri<span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                @if (User.IsInRole("Görev Listesi-True"))
+                                                {
+                                                    <li><a href="/TaskFollow/TaskOperations">Görev Oluştur</a></li>
+
+                                                }
+                                                @if (User.IsInRole("Görev İşlemleri-True"))
+                                                {
+                                                    <li><a href="/TaskFollow/AllTasksList">Görev İşlemleri</a></li>
+                                                }
+                                            </ul>
+                                        }
+                                    </li>
+                                    <li>
+                                        @if (User.IsInRole("Arıza/Talep Ekle-True") || User.IsInRole("Benim Taleplerim/Arızalarım-True") || User.IsInRole("Tüm Talepler/Arıza Kayıtları-True") || User.IsInRole("Talep/Arıza Kaydı Detayları-True") || User.IsInRole("Arıza/Talep İşlemleri-True") || User.IsInRole("Arıza/Talep Süreç İşlemleri-True") || User.IsInRole("Departman Arıza Kaydı/Talepler-True"))
+                                        {
+                                            <a><i class="fa fa-edit"></i> Arıza/Talep İşlemleri<span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                @if (User.IsInRole("Arıza/Talep Ekle-True"))
+                                                {
+                                                    <li><a href="/Request/AddRequest">Talep/Arıza Kaydı Oluştur</a></li>
+                                                }
+                                                @if (User.IsInRole("Benim Taleplerim/Arızalarım-True"))
+                                                {
+                                                    <li><a href="/Request/MyRequests">Taleplerim/Arıza Kayıtlarım</a></li>
+                                                }
+                                                @if (User.IsInRole("Tüm Talepler/Arıza Kayıtları-True"))
+                                                {
+                                                    <li><a style="color:darkorange" href="/Request/AllRequests">Tüm Talepler/Arıza Kayıtları</a></li>
+                                                }
+
+                                                @if (User.IsInRole("Departman Arıza Kaydı/Talepler-True"))
+                                                {
+                                                    <li><a style="color:darkorange" href="/Request/MyDepartmentRequests">Birimimdeki Talepler</a></li>
+                                                }
+
+                                            </ul>
+                                        }
+                                    </li>
+                                    <li>
+                                        @if (User.IsInRole("Tahsilat İşlemleri - Özet Bilgi-True") || User.IsInRole("Tüm Beklentiler Listesi-True") || User.IsInRole("Beklenti İşlemleri-True") || User.IsInRole("Bugüne Ait Beklenti Listesi-True") || User.IsInRole("Tüm Ödemeler Listesi-True") || User.IsInRole("Ödeme İşlemleri-True") || User.IsInRole("Bugüne Ait Ödeme Listesi-True"))
+                                        {
+                                            <a><i class="fa fa-edit"></i> Tahsilat Takibi/Yönetimi <span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                @if (User.IsInRole("Tahsilat İşlemleri - Özet Bilgi-True"))
+                                                {
+                                                    <li><a href="/CollectionTracking/SummaryPage">Özet Bilgi</a></li>
+
+                                                }
+                                                @if (User.IsInRole("Tüm Beklentiler Listesi-True") || User.IsInRole("Beklenti İşlemleri-True") || User.IsInRole("Bugüne Ait Beklenti Listesi-True"))
+                                                {
+                                                    <li>
+                                                        <a>Beklenti İşlemleri<span class="fa fa-chevron-down"></span></a>
+                                                        <ul class="nav child_menu">
+                                                            @if (User.IsInRole("Beklenti İşlemleri-True"))
+                                                            {
+                                                                <li><a href="/CollectionTracking/ExpectationOperations">Beklenti Ekle</a></li>
+                                                            }
+                                                            @if (User.IsInRole("Tüm Beklentiler Listesi-True"))
+                                                            {
+                                                                <li><a href="/CollectionTracking/AllExpectationsList">Tüm Beklentiler Listesi</a></li>
+                                                            }
+                                                            @if (User.IsInRole("Bugüne Ait Beklenti Listesi-True"))
+                                                            {
+                                                                <li><a href="/CollectionTracking/TodayAllExpectationsList">Bugüne Ait Beklenti Listesi</a></li>
+                                                            }
+
+                                                        </ul>
+                                                    </li>
+                                                }
+                                                @if (User.IsInRole("Tüm Ödemeler Listesi-True") || User.IsInRole("Ödeme İşlemleri-True") || User.IsInRole("Bugüne Ait Ödeme Listesi-True"))
+                                                {
+                                                    <li>
+                                                        <a>Ödeme İşlemleri<span class="fa fa-chevron-down"></span></a>
+                                                        <ul class="nav child_menu">
+                                                            @if (User.IsInRole("Ödeme İşlemleri-True"))
+                                                            {
+                                                                <li><a href="/CollectionTracking/PaymentOperations">Ödeme Ekle</a></li>
+                                                            }
+                                                            @if (User.IsInRole("Tüm Ödemeler Listesi-True"))
+                                                            {
+                                                                <li><a href="/CollectionTracking/AllPaymentsList">Tüm Ödemeler Listesi</a></li>
+                                                            }
+                                                            @if (User.IsInRole("Bugüne Ait Ödeme Listesi-True"))
+                                                            {
+                                                                <li><a href="/CollectionTracking/TodayAllPaymentsList">Bugüne Ait Ödeme Listesi</a></li>
+                                                            }
+
+                                                        </ul>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        }
+                                    </li>
+
+                                }
+                                @if (User.IsInRole("Kullanıcı İşlemleri-True") || User.IsInRole("Kullanıcı Listesi-True"))
+                                {
+
+                                    <li>
+                                        <a><i class="fa fa-edit"></i> Kullanıcı Yönetimi <span class="fa fa-chevron-down"></span></a>
+
+                                        <ul class="nav child_menu">
+                                            @if (User.IsInRole("Kullanıcı Listesi-True"))
+                                            {
+                                                <li><a href="/User/UserAllList">Kullanıcı Listesi</a></li>
+                                            }
+                                            @if (User.IsInRole("Kullanıcı İşlemleri-True"))
+                                            {
+                                                <li><a href="/User/UserOperations">Kullanıcı Ekle</a></li>
+                                            }
+                                        </ul>
+                                    </li>
+
+                                }
+                                @if (User.IsInRole("Personel Listesi-True") || User.IsInRole("Personel İşlemleri-True"))
+                                {
+                                    <li>
+                                        <a><i class="fa fa-crop"></i> İnsan Kaynakları <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            @if (User.IsInRole("Personel Listesi-True"))
+                                            {
+                                                <li><a href="/HumanResources/EmployeeAllList">Personel Listesi</a></li>
+                                            }
+                                            @if (User.IsInRole("Personel İşlemleri-True"))
+                                            {
+                                                <li><a href="/HumanResources/EmployeeOperations">Personel Ekle</a></li>
+                                            }
+                                        </ul>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+
+                    </div>
+                    <!-- /sidebar menu -->
+                    <!-- /menu footer buttons -->
+                    <div class="sidebar-footer hidden-small">
+                        <div class="pull-right">
+                            <center><p>©Tüm hakları Savatel Bilgi İşlem Ekibi'ne aittir.</p></center>
+                        </div>
+
+                    </div>
+                    <!-- /menu footer buttons -->
+                </div>
+            </div>
+
+            <!-- top navigation -->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+                    <nav class="nav navbar-nav">
+                        <ul class=" navbar-right">
+                            <li class="nav-item dropdown open" style="padding-left: 15px;">
+                                <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
+                                    @if (loginUserNameSurname != null)
+                                    {
+                                        @loginUserNameSurname//Giriş yapan kullanıcının isim soyismini tutar. Login ekranında oluşan session'a bağlı olarak oluşur.
+                                    }
+                                    -  @loginUserDepartmentName
+                                </a>
+                                <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
+
+                                    <a class="dropdown-item" href="/Login/Logout"><i class="fa fa-sign-out pull-right"></i> Çıkış Yap</a>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- /top navigation -->
+            <!-- page content -->
+            @RenderBody()
+            <!-- /page content -->
+            <!-- footer content -->
+            <footer>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="~/Scripts/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <!-- FastClick -->
+    <script src="~/Scripts/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="~/Scripts/nprogress.js"></script>
+    <!-- Chart.js -->
+    <script src="~/Scripts/Chart.min.js"></script>
+    <!-- gauge.js -->
+    <script src="~/Scripts/gauge.min.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="~/Scripts/bootstrap-progressbar.min.js"></script>
+    <!-- iCheck -->
+    <script src="~/Scripts/icheck.min.js"></script>
+    <!-- Skycons -->
+    <script src="~/Scripts/skycons.js"></script>
+    <!-- Flot -->
+    <script src="~/Scripts/jquery.flot.js"></script>
+    <script src="~/Scripts/jquery.flot.pie.js"></script>
+    <script src="~/Scripts/jquery.flot.time.js"></script>
+    <script src="~/Scripts/jquery.flot.stack.js"></script>
+    <script src="~/Scripts/jquery.flot.resize.js"></script>
+    <!-- Flot plugins -->
+    <script src="~/Scripts/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+    <script src="~/Scripts/flot-spline/js/jquery.flot.spline.min.js"></script>
+    <script src="~/Scripts/curvedLines.js"></script>
+    <!-- DateJS -->
+    <script src="~/Scripts/date.js"></script>
+    <!-- JQVMap -->
+    <script src="~/Scripts/jqvmap/dist/jquery.vmap.js"></script>
+    <script src="~/Scripts/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+    <script src="~/Scripts/jquery.vmap.sampledata.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="~/Scripts/moment/min/moment.min.js"></script>
+    <script src="~/Scripts/daterangepicker.js"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="~/Scripts/custom.min.js"></script>
+    <!--ExportToExcel-->
+    <script src="~/Scripts/jquery.table2excel.js"></script>
+    <!--dashboard table-->
+    <script src="~/Scripts/dashboard.js"></script>
+    <!-- Datatables -->
+    <script src="~/Scripts/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="~/Scripts/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/Scripts/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="~/Scripts/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="~/Scripts/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/Scripts/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="~/Scripts/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="~/Scripts/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="~/Scripts/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/Scripts/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="~/Scripts/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    <script src="~/Scripts/jszip/dist/jszip.min.js"></script>
+    <script src="~/Scripts/pdfmake/build/pdfmake.min.js"></script>
+    <script src="~/Scripts/pdfmake/build/vfs_fonts.js"></script>
+    <script src="~/Scripts/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+    <script>
+    //session end
+    var sessionTimeoutWarning = @Session.Timeout- 1;
+
+    var sTimeout = parseInt(sessionTimeoutWarning) * 60 * 1000;
+    setTimeout('SessionEnd()', sTimeout);
+
+    function SessionEnd() {
+        window.location = "/Login/Logout";
+    }
+    </script>
+</body>
+</html>

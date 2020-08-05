@@ -1,0 +1,226 @@
+﻿@using CallCenterAutomation.ViewModels
+@model EmployeeForViewModel
+
+@{
+    ViewBag.Title = "EmployeeOperations";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var loginUserNameSurname = Session["LoginUserNameSurname"];
+    var loginUserDepartmentID = (int)Session["LoginUserDepartmentID"];
+    var loginUserID = (int)Session["LoginUserID"];
+}
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>@ViewBag.EmployeeOperations</h3>
+
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2> <small>Personel işlemlerini bu sayfadan gerçekleştirebilirsiniz.</small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <br />
+                    <div class="x_content">
+                        @using (Html.BeginForm("EmployeeOperations", "HumanResources", FormMethod.Post))
+                        {
+                            <div class="form-group row">
+                                <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                    @Html.TextBoxFor(m => m.employee.EmployeeName, new { @class = "form-control has-feedback-left", @PlaceHolder = "İsim", @required = "" })
+                                    @Html.ValidationMessageFor(m => m.employee.EmployeeName, "", new { style = "color:red" })
+                                    <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                                <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                    @Html.TextBoxFor(m => m.employee.EmployeeSurname, new { @class = "form-control has-feedback-left", @PlaceHolder = "Soyisim", @required = "" })
+                                    @Html.ValidationMessageFor(m => m.employee.EmployeeSurname, "", new { style = "color:red" })
+                                    <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                    @Html.TextAreaFor(m => m.employee.Address, new { @class = "form-control has-feedback-left", rows = "3", @PlaceHolder = "Adres", @required = "" })
+                                    <span class="fa fa-location-arrow form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                                <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                    @Html.TextBoxFor(m => m.employee.TCKNo, new { @id = "tc", @class = "form-control has-feedback-left", rows = "3", @PlaceHolder = "TC Kimlik No", @required = "", @onchange = "EmployeeCheck()" })
+                                    @Html.ValidationMessageFor(m => m.employee.TCKNo, "", new { style = "color:red" })
+                                    <div class="row">
+                                        <label class="col-sm-2"></label>
+                                        <div class="col-sd-10">
+                                            <p id="Status" />
+                                        </div>
+                                    </div>
+                                    <span class="fa fa-american-sign-language-interpreting form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-1 col-sm-6  form-group has-feedback">
+                                    <label style="font-size:16px">Doğum<br /> Tarihi: </label>
+                                </div>
+                                <div class="col-md-5 col-sm-6  form-group has-feedback">
+                                    @Html.TextBoxFor(m => m.employee.BirthDate, "{0:yyyy-MM-dd}", new { @class = "form-control has-feedback-left", type = "date", @required = "" })
+                                    @Html.ValidationMessageFor(m => m.employee.BirthDate, "", new { style = "color:red" })
+                                    <span class="fa fa-birthday-cake form-control-feedback " aria-hidden="true"></span>
+                                </div>
+                                <div class="col-md-3 col-sm-6  form-group has-feedback">
+                                    <label class="control-label col-md-3 col-sm-6 " style="font-size:16px">Medeni <br />Durum:</label>
+                                    <div class="col-md-8 col-sm-6 ">
+                                        @Html.DropDownListFor(m => m.employee.MarriageStatusID, new SelectList(Model.marriageStatus, "ID", "MarriageStatusName"), new { @class = "form-control", @style = "float: right;text-align: right" })
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-sm-6  form-group has-feedback">
+                                    <label class="control-label col-md-3 col-sm-6 " style="font-size:16px">Öğrenim <br />Durumu:</label>
+                                    <div class="col-md-9 col-sm-6 ">
+                                        @Html.DropDownListFor(m => m.employee.EducationStatusID, new SelectList(Model.educationStatus, "ID", "EducationStatusName"), new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                    @Html.TextBoxFor(m => m.employee.PhoneNumber, new { @class = "form-control has-feedback-left", @PlaceHolder = "Telefon Numarası", @required = "" })
+                                    @Html.ValidationMessageFor(m => m.employee.PhoneNumber, "", new { style = "color:red" })
+                                    <span class="fa fa-mobile form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+
+                                <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                    @Html.TextBoxFor(m => m.employee.SocialSecurityNumber, new { @class = "form-control has-feedback-left", @PlaceHolder = "Sosyal Güvenlik Numarası" })
+                                    <span class="fa fa-bookmark form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                    @Html.TextBoxFor(m => m.employee.ProximityPhoneNumber, new { @class = "form-control has-feedback-left", @PlaceHolder = "Yakınının Telefon Numarası", @required = "" })
+                                    <span class="fa fa-mobile form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+
+                                <div class="col-md-6 col-sm-6 ">
+                                    <label class="control-label col-md-4 col-sm-6 " style="font-size:16px">Yakınlık Derecesi</label>
+                                    <div class="col-md-8 col-sm-6 ">
+                                        @Html.DropDownListFor(m => m.employee.DegreeOfProximityID, new SelectList(Model.proximityDegree, "ID", "ProximityDegreeName"), new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                    @Html.TextBoxFor(m => m.employee.E_Mail, new { @class = "form-control has-feedback-left", @PlaceHolder = "E-Mail" })
+                                    <span class="fa fa-mail-reply form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+
+                                <div class="col-md-1 col-sm-6  form-group has-feedback">
+                                    <label style="font-size:16px">İşe Başlama Tarihi: </label>
+                                </div>
+                                <div class="col-md-5 col-sm-6  form-group has-feedback">
+                                    @Html.TextBoxFor(m => m.employee.DateOfStartJob, "{0:yyyy-MM-dd}", new { @class = "form-control has-feedback-left", type = "date", @required = "" })
+                                    @Html.ValidationMessageFor(m => m.employee.DateOfStartJob, "", new { style = "color:red" })
+                                    <span class="fa fa-hourglass-start form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="ln_solid"></div>
+                            <div class="form-group row">
+                                <div class="col-md-1 col-sm-6 form-group has-feedback">
+                                    <label style="font-size:16px">Şirket</label>
+                                </div>
+                                <div class="col-md-5 col-sm-6 form-group has-feedback">
+                                    @Html.DropDownListFor(m => m.employee.CompanyID, new SelectList(Model.company, "ID", "CompanyName"), new { @class = "form-control" })
+                                </div>
+                                <div class="col-md-1 col-sm-6 form-group has-feedback">
+
+                                </div>
+                                <div class="col-md-5 col-sm-6 form-group has-feedback">
+
+                                </div>
+
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-1 col-sm-6 form-group has-feedback">
+                                    <label style="font-size:16px">Departman</label>
+                                </div>
+                                <div class="col-md-5 col-sm-6 form-group has-feedback">
+                                    @Html.DropDownListFor(m => m.employee.DepartmentID, new SelectList(Model.department, "ID", "DepartmentName"), new { @class = "form-control" })
+                                </div>
+                                <div class="col-md-1 col-sm-6 form-group has-feedback">
+                                    <label style="font-size:16px">Ünvan</label>
+                                </div>
+                                <div class="col-md-5 col-sm-6 form-group has-feedback">
+                                    @Html.DropDownListFor(m => m.employee.EmployeeTitleID, new SelectList(Model.employeeTitle, "ID", "EmployeeTitleName"), new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="ln_solid"></div>
+                            <div class="form-group row">
+                                <div class="col-md-1 col-sm-6 form-group has-feedback">
+                                    <label style="font-size:16px">Banka</label>
+                                </div>
+                                <div class="col-md-5 col-sm-6 form-group has-feedback">
+                                    @Html.DropDownListFor(m => m.employee.BankID, new SelectList(Model.bank, "ID", "BankName"), new { @class = "form-control" })
+                                </div>
+                                <div class="col-md-1 col-sm-6 form-group has-feedback">
+                                    <label style="font-size:16px">Hesap Türü</label>
+                                </div>
+                                <div class="col-md-5 col-sm-6 form-group has-feedback">
+                                    @Html.DropDownListFor(m => m.employee.BankAccountTypeID, new SelectList(Model.bankAccountType, "ID", "AccountType"), new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                    @Html.TextBoxFor(m => m.employee.IBAN, new { @class = "form-control has-feedback-left", @PlaceHolder = "IBAN" })
+                                    <span class="fa fa-mail-reply form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="ln_solid"></div>
+                            <div class="form-group row">
+                                <div class="col-md-1 col-sm-6 form-group has-feedback">
+                                    <label style="font-size:16px">Çalışma Durumu</label>
+                                </div>
+                                <div class="col-md-5 col-sm-6 form-group has-feedback">
+                                    @Html.DropDownListFor(m => m.employee.WorkingStatusID, new SelectList(Model.workingStatus, "ID", "WorkingStatusName"), new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            @*Buton Alanı*@
+                            <div class="ln_solid"></div>
+                            <div class="form-group row">
+                                <div class="offset-md-5">
+                                    <button onclick="window.location.href = '/HumanResources/EmployeeAllList';" type="button" class="btn btn-secondary">Geri Dön</button>
+                                    <button class="btn btn-primary" type="reset">Temizle</button>
+                                    @Html.HiddenFor(m => m.employee.ID)
+                                    <button type="submit" class="btn btn-success">Kaydet</button>
+                                </div>
+                            </div>
+                            @*Buton Alanı*@
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function EmployeeCheck()
+    {
+        $("#Status").html("Checking...");
+        $.post("@Url.Action("CheckEmployeeTCAvailability", "HumanResources")",
+            {
+                TC: $("#tc").val()
+            },
+            function (data) {
+                if (data == 0) {
+                    $("#Status").html('<font color="Green">Kullanılabilir!</font>');
+                    $('#username').css("border-color", "Green");
+                }
+                else {
+                    $("#Status").html('<font color="Red">Bu TC kimlik numarası ile personel mevcut!  Bilgileri kaydederseniz bu TC şu an işlem yaptığınız personel ile eşleşmeyecektir!</font>');
+                    $('#username').css("border-color", "Red");
+                }
+            });
+    }
+</script>

@@ -1,0 +1,85 @@
+﻿@using CallCenterAutomation.ViewModels
+@model CollectionTrackingForViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var loginUserNameSurname = Session["LoginUserNameSurname"];
+    var loginUserDepartmentID = (int)Session["LoginUserDepartmentID"];
+    var loginUserID = (int)Session["LoginUserID"];
+    var loginUserDepartmentName = Session["LoginUserDepartmentName"];
+    double rateOfExpectationPayment = (Convert.ToDouble(@Model.paymentList.Where(x => x.DateTime == DateTime.Today && x.DepartmentID == loginUserDepartmentID).Sum(x => x.PaymentAmount)) / Convert.ToDouble(@Model.expectationList.Where(x => x.DateTime == DateTime.Today && x.DepartmentID == loginUserDepartmentID).Sum(x => x.ExpectationAmount)))*100;
+}
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h4> Özet Bilgiler - @loginUserDepartmentName</h4><h2> @ViewBag.PageStatus </h2>
+            </div>
+
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
+            <div class="tile-stats">
+                <br />
+                <h3>Bugüne Ait Toplam Beklenti</h3>
+                <div class="count">@Model.expectationList.Where(x => x.DateTime == DateTime.Today && x.DepartmentID == loginUserDepartmentID).Sum(x => x.ExpectationAmount) ₺</div>
+            </div>
+        </div>
+        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
+            <div class="tile-stats">
+                <br />
+                <h3>Bugüne Ait Toplam Ödeme</h3>
+                <div class="count">@Model.paymentList.Where(x => x.DateTime == DateTime.Today && x.DepartmentID == loginUserDepartmentID).Sum(x => x.PaymentAmount) ₺</div>
+            </div>
+        </div>
+        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
+            <div class="tile-stats">
+                <br />
+                <h3>Günlük Beklentiye Ulaşma Oranı</h3>
+                <div class="count">
+                    %@rateOfExpectationPayment
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 row">
+            <div class="  table">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Personel</th>
+                            <th>Bugüne Ait Toplam Beklenti</th>
+                            <th>Bugüne Ait Toplam Ödeme</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+                        @foreach (var item in Model.userList.Where(x => x.EMPLOYEE.DepartmentID == loginUserDepartmentID))
+                        {
+                            <tr>
+                                <td>
+                                    <h2 style="font-size:125%;">@item.EMPLOYEE.FullName</h2>
+                                </td>
+                                <td>
+                                    <h2 style="font-size:125%;">@Model.expectationList.Where(x => x.DateTime == DateTime.Today && x.UserID == item.ID).Sum(x => x.ExpectationAmount) ₺</h2>
+                                </td>
+                                <td>
+                                    <h2 style="font-size:125%;">@Model.paymentList.Where(x => x.DateTime == DateTime.Today && x.UserID == item.ID).Sum(x => x.PaymentAmount) ₺</h2>
+                                </td>
+                            </tr>
+                        }
+
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.col -->
+        </div>
+
+    </div>
+</div>
+

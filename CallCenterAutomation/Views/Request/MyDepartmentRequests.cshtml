@@ -1,0 +1,161 @@
+﻿@using CallCenterAutomation.Models.Entity
+
+@model List<REQUEST>
+
+@{
+    ViewBag.Title = "EmployeeAllList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var loginUserNameSurname = Session["LoginUserNameSurname"];
+    var loginUserDepartmentID = (int)Session["LoginUserDepartmentID"];
+    var loginUserID = (int)Session["LoginUserID"];
+}
+<body onload="JavaScript:timedRefresh(60000);">
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="row">
+                            @*Kayıt Durum Sayıları*@
+                            <div class="col-lg-3 col-6">
+                                <div class="small-box bg-success">
+                                    <div class="inner">
+                                        <h3 style="color:white">@Model.Where(x => x.USER.EMPLOYEE.DepartmentID == (int)Session["LoginUserDepartmentID"] && x.RequestStatusID ==1).Count()</h3>
+                                        <p style="color:white"><strong>AÇIK KAYIT</strong></p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fa fa-address-card"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-6">
+                                <div class="small-box bg-danger">
+                                    <div class="inner">
+                                        <h3 style="color:white">@Model.Where(x => x.USER.EMPLOYEE.DepartmentID == (int)Session["LoginUserDepartmentID"] && x.RequestStatusID == 2).Count()</h3>
+                                        <p style="color:white"><strong>ÇÖZÜLDÜ </strong></p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fa fa-address-card"></i>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-3 col-6">
+                                <div class="small-box bg-orange">
+                                    <div class="inner">
+                                        <h3 style="color:white">@Model.Where(x => x.USER.EMPLOYEE.DepartmentID == (int)Session["LoginUserDepartmentID"] && x.RequestStatusID == 3).Count()</h3>
+                                        <p style="color:white"><strong>İŞLEMDE<br /></strong></p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fa fa-address-card"></i>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="card-box table-responsive">
+
+                                    <table id="datatable" class="table table-striped table-bordered dataTable no-footer" style="width:100%" role="grid" aria-describedby="datatable-info">
+                                        <thead>
+                                            <tr>
+                                                <th>Talep No</th>
+                                                <th>Talebi Oluşturan</th>
+                                                <th>Talep Başlığı</th>
+                                                <th>Talep Detayı</th>
+                                                <th>Oluşturulma Tarihi</th>
+                                                <th>Anydesk</th>
+                                                <th>Dahili</th>
+                                                <th>Masa Numarası</th>
+                                                <th>Durum</th>
+                                                <th>Detay</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (Model.Count() == 0)
+                                            {
+                                                <tr>
+                                                    <td colspan="8" style="color:red">
+                                                        Eşleşecek kayıt bulunamadı.
+                                                    </td>
+                                                </tr>
+                                            }
+                                            else
+                                            {
+                                                foreach (var item in Model.Where(x => x.USER.EMPLOYEE.DepartmentID == (int)Session["LoginUserDepartmentID"]))
+                                                {
+                                                    <tr>
+                                                        <td width="30">
+                                                            @item.ID
+                                                        </td>
+                                                        <td width="150">
+                                                            @item.USER.EMPLOYEE.FullName
+                                                        </td>
+                                                        <td width="150">
+                                                            @item.REQUESTHEADER.Name
+                                                        </td>
+                                                        <td width="800">
+                                                            @item.RequestExplanation
+                                                        </td>
+                                                        <td>
+                                                            @item.AddedTime
+                                                        </td>
+                                                        <td>
+                                                            @item.Anydesk
+                                                        </td>
+                                                        <td>
+                                                            @item.InternalNumber
+                                                        </td>
+                                                        <td>
+                                                            @item.DeskNumber
+                                                        </td>
+                                                        <td>
+                                                            @if (item.REQUESTSTATUS.Name == "Açık Kayıt")
+                                                            {
+                                                                <button class="btn btn-success">Açık Kayıt</button>
+                                                            }
+                                                            else if (item.REQUESTSTATUS.Name == "Çözüldü")
+                                                            {
+                                                                <button class="btn btn-danger">Çözüldü</button>
+                                                            }
+                                                            else if (item.REQUESTSTATUS.Name == "İşlemde")
+                                                            {
+                                                                <button class="btn btn-warning">İşlemde</button>
+                                                            }
+                                                        </td>
+                                                        <td>
+                                                            @Html.ActionLink("Detay", "RequestDetail", new { id = item.ID }, new { @class = "btn btn-primary" })
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript">
+    function timedRefresh(timeoutPeriod) {
+        setTimeout(function () {
+            location.reload(true);
+        }, timeoutPeriod);
+    }
+</script>
+

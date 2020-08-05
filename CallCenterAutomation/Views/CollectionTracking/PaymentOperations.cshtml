@@ -1,0 +1,87 @@
+﻿@using CallCenterAutomation.ViewModels
+@model CollectionTrackingForViewModel
+
+@{
+    ViewBag.Title = "CollectionTracking";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var loginUserNameSurname = Session["LoginUserNameSurname"];
+
+    var loginUserDepartmentID = (int)Session["LoginUserDepartmentID"];
+    var loginUserID = (int)Session["LoginUserID"];
+}
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3></h3>
+
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2> <small>Ödeme ekleme/düzenleme işlemlerini bu sayfadan gerçekleştirebilirsiniz.</small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <br />
+                    <div class="x_content">
+                        @using (Html.BeginForm("PaymentOperations", "CollectionTracking", FormMethod.Post))
+                        {
+                            <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                @Html.TextBoxFor(m => m.payment.FileNumber, new { @class = "form-control has-feedback-left", @PlaceHolder = "Dosya Numarası", @required = "" })
+                                @Html.ValidationMessageFor(m => m.payment.FileNumber, "", new { style = "color:red" })
+                                <span class="fa fa-folder form-control-feedback left" aria-hidden="true"></span>
+                            </div>
+                            <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                @Html.TextBoxFor(m => m.payment.PaymentAmount, new { @class = "form-control has-feedback-left", @PlaceHolder = "Ödeme Miktarı (Sadece ödeme miktarını giriniz. Noktalama işareti eklemeyiniz! - Ör: 100", @required = "", @onkeypress = "return isNumberKey(event)" , @type="number"})
+                                @Html.ValidationMessageFor(m => m.payment.PaymentAmount, "", new { style = "color:red" })
+
+                                <span class="fa fa-money form-control-feedback left" aria-hidden="true"></span>
+                            </div>
+
+                            <br />
+                            <br />
+                            <div class="ln_solid"></div>
+
+
+                            <div class="ln_solid"></div>
+
+
+                            @*Buton Alanı*@
+                            <div class="ln_solid"></div>
+                            <div class="form-group row">
+                                <div class="offset-md-5">
+                                    <button onclick="window.location.href = '/CollectionTracking/TodayAllPaymentsList';" type="button" class="btn btn-secondary">Geri Dön</button>
+                                    <button class="btn btn-primary" type="reset">Temizle</button>
+                                    @Html.HiddenFor(m => m.payment.ID)
+                                    <button type="submit" class="btn btn-success">Kaydet</button>
+                                </div>
+                            </div>
+                            @*Buton Alanı*@
+
+                        }
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        if (charCode != 46 && charCode > 31 &&  (charCode < 48 || charCode > 57 || charCode==110))
+            return false;
+
+
+        return true;
+    }
+</script>

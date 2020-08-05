@@ -1,0 +1,102 @@
+﻿@using CallCenterAutomation.ViewModels
+@model RequestForViewModel
+
+@{
+    ViewBag.Title = "EmployeeOperations";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var loginUserNameSurname = Session["LoginUserNameSurname"];
+    var loginUserDepartmentID = (int)Session["LoginUserDepartmentID"];
+    var loginUserID = (int)Session["LoginUserID"];
+}
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2> <small>Talep oluşturma işlemini bu sayfadan gerçekleştirebilirsiniz.</small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <br />
+                    <div class="x_content">
+                        @using (Html.BeginForm("AddRequest", "Request", FormMethod.Post))
+                        {
+                            <div class="form-group row">
+                                <div class="col-md-1 col-sm-6  form-group has-feedback">
+                                    <label style="font-size:16px">Talep Başlığı</label>
+                                </div>
+                                <div class="col-md-2 col-sm-6  form-group has-feedback">
+                                    @Html.DropDownListFor(m => m.request.RequestHeaderID, new SelectList(Model.requestHeaderList, "ID", "Name"), new { @class = "form-control", @style = "float: right;text-align: right" })
+                                </div>
+
+                                <div class="col-md-1 col-sm-6  form-group has-feedback">
+                                    <label style="font-size:16px">Anydesk</label>
+                                </div>
+                                <div class="col-md-2 col-sm-6  form-group has-feedback">
+
+                                    @Html.TextBoxFor(m => m.request.Anydesk, new { @class = "form-control", @onkeypress = "return isNumberKey(event)", @type = "number" })
+                                    <label style="color:red">@ViewBag.AnydeskLengthMessage</label>
+                                </div>
+
+                                <div class="col-md-1 col-sm-6  form-group has-feedback">
+                                    <label style="font-size:16px">Masa No</label>
+                                </div>
+                                <div class="col-md-2 col-sm-6  form-group has-feedback">
+                                    @Html.TextBoxFor(m => m.request.DeskNumber, new { @class = "form-control", @onkeypress = "return isNumberKey(event)", @type = "number" })
+                                </div>
+
+                                <div class="col-md-1 col-sm-6  form-group has-feedback">
+                                    <label style="font-size:16px">Dahili</label>
+                                </div>
+                                <div class="col-md-2 col-sm-6  form-group has-feedback">
+                                    @Html.TextBoxFor(m => m.request.InternalNumber, new { @class = "form-control", @onkeypress = "return isNumberKey(event)", @type = "number" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-1 col-sm-6  form-group has-feedback">
+                                    <h2><label style="font-size:16px">Talep Detayı</label></h2>
+                                </div>
+                                <div class="col-md-5 col-sm-6 ">
+                                    @Html.TextAreaFor(m => m.request.RequestExplanation, new { @class = "form-control", @required = "" })
+                                </div>
+                            </div>
+
+                            <br />
+                            @*Buton Alanı*@
+                            @*<div class="ln_solid"></div>*@
+                            <div class="form-group row">
+                                <div class="offset-md-5">
+                                    <button onclick="window.location.href = '/Main/Index';" type="button" class="btn btn-secondary">Geri Dön</button>
+                                    <button class="btn btn-primary" type="reset">Temizle</button>
+                                    @Html.HiddenFor(m => m.request.ID)
+                                    <button type="submit" class="btn btn-success">Kaydet</button>
+                                </div>
+                            </div>
+                            @*Buton Alanı*@
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57 || charCode == 110))
+            return false;
+
+
+        return true;
+    }
+</script>

@@ -1,0 +1,131 @@
+﻿@using CallCenterAutomation.Models.Entity
+
+@model List<EMPLOYEE>
+
+@{
+    ViewBag.Title = "EmployeeAllList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var loginUserNameSurname = Session["LoginUserNameSurname"];
+    var loginUserDepartmentID = (int)Session["LoginUserDepartmentID"];
+    var loginUserID = (int)Session["LoginUserID"];
+}
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h4>Personel İşlemleri -</h4><h2>  @ViewBag.EmployeListStatus</h2>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-md-12 col-sm-12 ">
+            <div class="x_panel">
+                <div class="x_title">
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card-box table-responsive">
+                                @using (Html.BeginForm("EmployeeAllList", "HumanResources", FormMethod.Get))
+                                {
+                                    @Html.TextBox("searching")<input type="submit" value="Ara" />
+                                    <button id="btnExportEmployee" class="btn btn-success float-right">Excel'e Aktar</button>
+                                }  <br />
+                                @Model.Count() kayıt görüntüleniyor.
+                                <table id="employeeList" class="table table-striped table-bordered" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Personel Adı</th>
+                                            <th>TC Kimlik No</th>
+                                            <th>Unvan</th>
+                                            <th>Tel. No</th>
+                                            <th>Eğitim Durumu</th>
+                                            <th>Durum</th>
+                                            <th>Şirket</th>
+                                            <th>Banka</th>
+                                            <th>İşlem</th>
+
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        @if (Model.Count() == 0)
+                                        {
+                                            <tr>
+                                                <td colspan="3" style="color:red">
+                                                    Eşleşecek kayıt bulunamadı.
+                                                </td>
+                                            </tr>
+                                        }
+                                        else
+                                        {
+                                            foreach (var item in Model)
+                                            {
+                                                <tr>
+
+                                                    <td>
+                                                        @item.EmployeeName @item.EmployeeSurname
+                                                    </td>
+                                                    <td>
+                                                        @item.TCKNo
+                                                    </td>
+                                                    <td>
+                                                        @item.EMPLOYEETITLE.EmployeeTitleName
+                                                    </td>
+                                                    <td>
+                                                        @item.PhoneNumber
+                                                    </td>
+                                                    <td>
+                                                        @item.EDUCATIONSTATUS.EducationStatusName
+                                                    </td>
+
+                                                    <td>
+                                                        @if (@item.WorkingStatusID == 1)
+                                                        {
+                                                            <button class="btn btn-success">Çalışıyor</button>
+                                                        }
+                                                        @if (item.WorkingStatusID == 2)
+                                                        {
+                                                            <button class="btn btn-danger">Çalışmıyor</button>
+                                                        }
+                                                        @if (item.WorkingStatusID == 3)
+                                                        {
+                                                            <button class="btn btn-secondary">Belirtilmemiş</button>
+                                                        }
+                                                    </td>
+                                                    <td>
+                                                        @item.COMPANy.CompanyName
+                                                    </td>
+                                                    <td>
+                                                        @item.BANK.BankName
+                                                    </td>
+                                                    <td>
+                                                        @Html.ActionLink("Detay", "EmployeeUpdate", new { id = item.ID }, new { @class = "btn btn-primary" })
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+
+                                    </tbody>
+                                </table>
+                                @Model.Count() kayıt görüntüleniyor.
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script type="text/javascript" src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery.table2excel.js"></script>
+<script type="text/javascript">
+
+    $("#btnExportEmployee").click(function () {
+        $(".table").table2excel();
+    });
+</script>

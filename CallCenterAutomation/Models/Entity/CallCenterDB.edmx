@@ -1,0 +1,1590 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CallCenterAutomationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BANKACCOUNTTYPES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BANKS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BankName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="COMPANIES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DEPARTMENTS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EDUCATIONSTATUSES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EducationStatusName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EMPLOYEES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TCKNo" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="EmployeeName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="EmployeeSurname" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="BirthDate" Type="smalldatetime" />
+          <Property Name="SocialSecurityNumber" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="ProximityPhoneNumber" Type="nvarchar(max)" />
+          <Property Name="E-Mail" Type="nvarchar(max)" />
+          <Property Name="DateOfStartJob" Type="smalldatetime" />
+          <Property Name="IBAN" Type="nvarchar(max)" />
+          <Property Name="DegreeOfProximityID" Type="int" />
+          <Property Name="EducationStatusID" Type="int" />
+          <Property Name="BankID" Type="int" />
+          <Property Name="BankAccountTypeID" Type="int" />
+          <Property Name="CompanyID" Type="int" />
+          <Property Name="DepartmentID" Type="int" />
+          <Property Name="EmployeeTitleID" Type="int" />
+          <Property Name="MarriageStatusID" Type="int" />
+          <Property Name="WorkingStatusID" Type="int" />
+          <Property Name="isAnyUser" Type="int" />
+        </EntityType>
+        <EntityType Name="EMPLOYEETITLES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeTitleName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EXPECTATIONS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="DepartmentID" Type="int" Nullable="false" />
+          <Property Name="FileNumber" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ExpectationAmount" Type="bigint" Nullable="false" />
+          <Property Name="AddingTime" Type="datetime" Nullable="false" />
+          <Property Name="DateTime" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MARRIAGESTATUSES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MarriageStatusName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PAYMENTS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="DepartmentID" Type="int" Nullable="false" />
+          <Property Name="FileNumber" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PaymentAmount" Type="bigint" Nullable="false" />
+          <Property Name="AddingTime" Type="datetime" Nullable="false" />
+          <Property Name="DateTime" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PROXIMITYDEGREES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProximityDegreeName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="REQUESTHEADERS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Explanation" Type="nvarchar(max)" />
+          <Property Name="SolutionProposals" Type="nvarchar(max)" />
+          <Property Name="isActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="REQUESTPROCESSES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequestID" Type="int" />
+          <Property Name="ResponsibleUserID" Type="int" />
+          <Property Name="SolutionNote" Type="nvarchar(max)" />
+          <Property Name="ProcessTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="REQUESTS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="RequestHeaderID" Type="int" />
+          <Property Name="RequestExplanation" Type="nvarchar(max)" />
+          <Property Name="AddedTime" Type="datetime" />
+          <Property Name="Anydesk" Type="nvarchar" MaxLength="15" />
+          <Property Name="DeskNumber" Type="smallint" />
+          <Property Name="InternalNumber" Type="smallint" />
+          <Property Name="RequestStatusID" Type="int" />
+        </EntityType>
+        <EntityType Name="REQUESTSTATUSES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="isActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="ROLEMASTERS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TASKPROCESSES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TaskID" Type="int" />
+          <Property Name="LastProcessTime" Type="datetime" />
+          <Property Name="ResponsibleUserID" Type="int" />
+          <Property Name="SolutionDetail" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TASKS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Detail" Type="nvarchar(max)" />
+          <Property Name="TaskStatusID" Type="int" />
+          <Property Name="AddedTime" Type="datetime" />
+          <Property Name="ResponsibleUsers" Type="nvarchar(max)" />
+          <Property Name="DepartmentID" Type="int" />
+        </EntityType>
+        <EntityType Name="TASKSTATUSES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusName" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="USERROLEMAPPINGS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USERS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WORKINGSTATUSES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="WorkingStatusName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_EXPECTATIONS_DEPARTMENTS">
+          <End Role="DEPARTMENTS" Type="Self.DEPARTMENTS" Multiplicity="1" />
+          <End Role="EXPECTATIONS" Type="Self.EXPECTATIONS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTMENTS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EXPECTATIONS">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EXPECTATIONS_USERS">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="EXPECTATIONS" Type="Self.EXPECTATIONS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EXPECTATIONS">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PAYMENTS_DEPARTMENTS">
+          <End Role="DEPARTMENTS" Type="Self.DEPARTMENTS" Multiplicity="1" />
+          <End Role="PAYMENTS" Type="Self.PAYMENTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTMENTS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PAYMENTS">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PAYMENTS_USERS">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="PAYMENTS" Type="Self.PAYMENTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PAYMENTS">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REQUESTPROCESSES_REQUESTS">
+          <End Role="REQUESTS" Type="Self.REQUESTS" Multiplicity="0..1" />
+          <End Role="REQUESTPROCESSES" Type="Self.REQUESTPROCESSES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REQUESTS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="REQUESTPROCESSES">
+              <PropertyRef Name="RequestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REQUESTPROCESSES_USERS">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+          <End Role="REQUESTPROCESSES" Type="Self.REQUESTPROCESSES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="REQUESTPROCESSES">
+              <PropertyRef Name="ResponsibleUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REQUESTS_REQUESTHEADERS">
+          <End Role="REQUESTHEADERS" Type="Self.REQUESTHEADERS" Multiplicity="0..1" />
+          <End Role="REQUESTS" Type="Self.REQUESTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REQUESTHEADERS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="REQUESTS">
+              <PropertyRef Name="RequestHeaderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REQUESTS_REQUESTSTATUSES">
+          <End Role="REQUESTSTATUSES" Type="Self.REQUESTSTATUSES" Multiplicity="0..1" />
+          <End Role="REQUESTS" Type="Self.REQUESTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REQUESTSTATUSES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="REQUESTS">
+              <PropertyRef Name="RequestStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REQUESTS_USERS">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+          <End Role="REQUESTS" Type="Self.REQUESTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="REQUESTS">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TASKPROCESSES_TASKS">
+          <End Role="TASKS" Type="Self.TASKS" Multiplicity="0..1" />
+          <End Role="TASKPROCESSES" Type="Self.TASKPROCESSES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TASKS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TASKPROCESSES">
+              <PropertyRef Name="TaskID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TASKPROCESSES_USERS">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+          <End Role="TASKPROCESSES" Type="Self.TASKPROCESSES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TASKPROCESSES">
+              <PropertyRef Name="ResponsibleUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TASKS_TASKSTATUSES">
+          <End Role="TASKSTATUSES" Type="Self.TASKSTATUSES" Multiplicity="0..1" />
+          <End Role="TASKS" Type="Self.TASKS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TASKSTATUSES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TASKS">
+              <PropertyRef Name="TaskStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_EMPLOYEE_TBL_BANK">
+          <End Role="BANKS" Type="Self.BANKS" Multiplicity="0..1" />
+          <End Role="EMPLOYEES" Type="Self.EMPLOYEES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BANKS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EMPLOYEES">
+              <PropertyRef Name="BankID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_EMPLOYEE_TBL_BANKACCOUNTTYPE">
+          <End Role="BANKACCOUNTTYPES" Type="Self.BANKACCOUNTTYPES" Multiplicity="0..1" />
+          <End Role="EMPLOYEES" Type="Self.EMPLOYEES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BANKACCOUNTTYPES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EMPLOYEES">
+              <PropertyRef Name="BankAccountTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_EMPLOYEE_TBL_COMPANY">
+          <End Role="COMPANIES" Type="Self.COMPANIES" Multiplicity="0..1" />
+          <End Role="EMPLOYEES" Type="Self.EMPLOYEES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMPANIES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EMPLOYEES">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_EMPLOYEE_TBL_DEPARTMENT">
+          <End Role="DEPARTMENTS" Type="Self.DEPARTMENTS" Multiplicity="0..1" />
+          <End Role="EMPLOYEES" Type="Self.EMPLOYEES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTMENTS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EMPLOYEES">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_EMPLOYEE_TBL_EDUCATIONSTATUS">
+          <End Role="EDUCATIONSTATUSES" Type="Self.EDUCATIONSTATUSES" Multiplicity="0..1" />
+          <End Role="EMPLOYEES" Type="Self.EMPLOYEES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EDUCATIONSTATUSES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EMPLOYEES">
+              <PropertyRef Name="EducationStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_EMPLOYEE_TBL_EMPLOYEETITLE">
+          <End Role="EMPLOYEETITLES" Type="Self.EMPLOYEETITLES" Multiplicity="0..1" />
+          <End Role="EMPLOYEES" Type="Self.EMPLOYEES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEETITLES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EMPLOYEES">
+              <PropertyRef Name="EmployeeTitleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_EMPLOYEE_TBL_MARRIAGESTATUS">
+          <End Role="MARRIAGESTATUSES" Type="Self.MARRIAGESTATUSES" Multiplicity="0..1" />
+          <End Role="EMPLOYEES" Type="Self.EMPLOYEES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MARRIAGESTATUSES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EMPLOYEES">
+              <PropertyRef Name="MarriageStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_EMPLOYEE_TBL_PROXIMITYDEGREE">
+          <End Role="PROXIMITYDEGREES" Type="Self.PROXIMITYDEGREES" Multiplicity="0..1" />
+          <End Role="EMPLOYEES" Type="Self.EMPLOYEES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROXIMITYDEGREES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EMPLOYEES">
+              <PropertyRef Name="DegreeOfProximityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_EMPLOYEE_TBL_WORKINGSTATUS">
+          <End Role="WORKINGSTATUSES" Type="Self.WORKINGSTATUSES" Multiplicity="0..1" />
+          <End Role="EMPLOYEES" Type="Self.EMPLOYEES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WORKINGSTATUSES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EMPLOYEES">
+              <PropertyRef Name="WorkingStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_USERROLEMAPPING_TBL_ROLEMASTER">
+          <End Role="ROLEMASTERS" Type="Self.ROLEMASTERS" Multiplicity="1" />
+          <End Role="USERROLEMAPPINGS" Type="Self.USERROLEMAPPINGS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLEMASTERS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="USERROLEMAPPINGS">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_USERROLEMAPPING_TBL_USER">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="USERROLEMAPPINGS" Type="Self.USERROLEMAPPINGS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="USERROLEMAPPINGS">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USERS_EMPLOYEES">
+          <End Role="EMPLOYEES" Type="Self.EMPLOYEES" Multiplicity="1" />
+          <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="USERS">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CallCenterAutomationModelStoreContainer">
+          <EntitySet Name="BANKACCOUNTTYPES" EntityType="Self.BANKACCOUNTTYPES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BANKS" EntityType="Self.BANKS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COMPANIES" EntityType="Self.COMPANIES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DEPARTMENTS" EntityType="Self.DEPARTMENTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EDUCATIONSTATUSES" EntityType="Self.EDUCATIONSTATUSES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMPLOYEES" EntityType="Self.EMPLOYEES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMPLOYEETITLES" EntityType="Self.EMPLOYEETITLES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EXPECTATIONS" EntityType="Self.EXPECTATIONS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MARRIAGESTATUSES" EntityType="Self.MARRIAGESTATUSES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PAYMENTS" EntityType="Self.PAYMENTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PROXIMITYDEGREES" EntityType="Self.PROXIMITYDEGREES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="REQUESTHEADERS" EntityType="Self.REQUESTHEADERS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="REQUESTPROCESSES" EntityType="Self.REQUESTPROCESSES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="REQUESTS" EntityType="Self.REQUESTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="REQUESTSTATUSES" EntityType="Self.REQUESTSTATUSES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ROLEMASTERS" EntityType="Self.ROLEMASTERS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TASKPROCESSES" EntityType="Self.TASKPROCESSES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TASKS" EntityType="Self.TASKS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TASKSTATUSES" EntityType="Self.TASKSTATUSES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USERROLEMAPPINGS" EntityType="Self.USERROLEMAPPINGS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WORKINGSTATUSES" EntityType="Self.WORKINGSTATUSES" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_EXPECTATIONS_DEPARTMENTS" Association="Self.FK_EXPECTATIONS_DEPARTMENTS">
+            <End Role="DEPARTMENTS" EntitySet="DEPARTMENTS" />
+            <End Role="EXPECTATIONS" EntitySet="EXPECTATIONS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EXPECTATIONS_USERS" Association="Self.FK_EXPECTATIONS_USERS">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="EXPECTATIONS" EntitySet="EXPECTATIONS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PAYMENTS_DEPARTMENTS" Association="Self.FK_PAYMENTS_DEPARTMENTS">
+            <End Role="DEPARTMENTS" EntitySet="DEPARTMENTS" />
+            <End Role="PAYMENTS" EntitySet="PAYMENTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PAYMENTS_USERS" Association="Self.FK_PAYMENTS_USERS">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="PAYMENTS" EntitySet="PAYMENTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REQUESTPROCESSES_REQUESTS" Association="Self.FK_REQUESTPROCESSES_REQUESTS">
+            <End Role="REQUESTS" EntitySet="REQUESTS" />
+            <End Role="REQUESTPROCESSES" EntitySet="REQUESTPROCESSES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REQUESTPROCESSES_USERS" Association="Self.FK_REQUESTPROCESSES_USERS">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="REQUESTPROCESSES" EntitySet="REQUESTPROCESSES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REQUESTS_REQUESTHEADERS" Association="Self.FK_REQUESTS_REQUESTHEADERS">
+            <End Role="REQUESTHEADERS" EntitySet="REQUESTHEADERS" />
+            <End Role="REQUESTS" EntitySet="REQUESTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REQUESTS_REQUESTSTATUSES" Association="Self.FK_REQUESTS_REQUESTSTATUSES">
+            <End Role="REQUESTSTATUSES" EntitySet="REQUESTSTATUSES" />
+            <End Role="REQUESTS" EntitySet="REQUESTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REQUESTS_USERS" Association="Self.FK_REQUESTS_USERS">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="REQUESTS" EntitySet="REQUESTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TASKPROCESSES_TASKS" Association="Self.FK_TASKPROCESSES_TASKS">
+            <End Role="TASKS" EntitySet="TASKS" />
+            <End Role="TASKPROCESSES" EntitySet="TASKPROCESSES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TASKPROCESSES_USERS" Association="Self.FK_TASKPROCESSES_USERS">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="TASKPROCESSES" EntitySet="TASKPROCESSES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TASKS_TASKSTATUSES" Association="Self.FK_TASKS_TASKSTATUSES">
+            <End Role="TASKSTATUSES" EntitySet="TASKSTATUSES" />
+            <End Role="TASKS" EntitySet="TASKS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_EMPLOYEE_TBL_BANK" Association="Self.FK_TBL_EMPLOYEE_TBL_BANK">
+            <End Role="BANKS" EntitySet="BANKS" />
+            <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_EMPLOYEE_TBL_BANKACCOUNTTYPE" Association="Self.FK_TBL_EMPLOYEE_TBL_BANKACCOUNTTYPE">
+            <End Role="BANKACCOUNTTYPES" EntitySet="BANKACCOUNTTYPES" />
+            <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_EMPLOYEE_TBL_COMPANY" Association="Self.FK_TBL_EMPLOYEE_TBL_COMPANY">
+            <End Role="COMPANIES" EntitySet="COMPANIES" />
+            <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_EMPLOYEE_TBL_DEPARTMENT" Association="Self.FK_TBL_EMPLOYEE_TBL_DEPARTMENT">
+            <End Role="DEPARTMENTS" EntitySet="DEPARTMENTS" />
+            <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_EMPLOYEE_TBL_EDUCATIONSTATUS" Association="Self.FK_TBL_EMPLOYEE_TBL_EDUCATIONSTATUS">
+            <End Role="EDUCATIONSTATUSES" EntitySet="EDUCATIONSTATUSES" />
+            <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_EMPLOYEE_TBL_EMPLOYEETITLE" Association="Self.FK_TBL_EMPLOYEE_TBL_EMPLOYEETITLE">
+            <End Role="EMPLOYEETITLES" EntitySet="EMPLOYEETITLES" />
+            <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_EMPLOYEE_TBL_MARRIAGESTATUS" Association="Self.FK_TBL_EMPLOYEE_TBL_MARRIAGESTATUS">
+            <End Role="MARRIAGESTATUSES" EntitySet="MARRIAGESTATUSES" />
+            <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_EMPLOYEE_TBL_PROXIMITYDEGREE" Association="Self.FK_TBL_EMPLOYEE_TBL_PROXIMITYDEGREE">
+            <End Role="PROXIMITYDEGREES" EntitySet="PROXIMITYDEGREES" />
+            <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_EMPLOYEE_TBL_WORKINGSTATUS" Association="Self.FK_TBL_EMPLOYEE_TBL_WORKINGSTATUS">
+            <End Role="WORKINGSTATUSES" EntitySet="WORKINGSTATUSES" />
+            <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_USERROLEMAPPING_TBL_ROLEMASTER" Association="Self.FK_TBL_USERROLEMAPPING_TBL_ROLEMASTER">
+            <End Role="ROLEMASTERS" EntitySet="ROLEMASTERS" />
+            <End Role="USERROLEMAPPINGS" EntitySet="USERROLEMAPPINGS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_USERROLEMAPPING_TBL_USER" Association="Self.FK_TBL_USERROLEMAPPING_TBL_USER">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="USERROLEMAPPINGS" EntitySet="USERROLEMAPPINGS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USERS_EMPLOYEES" Association="Self.FK_USERS_EMPLOYEES">
+            <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
+            <End Role="USERS" EntitySet="USERS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CallCenterAutomationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CallCenterAutomationEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BANKACCOUNTTYPES" EntityType="CallCenterAutomationModel.BANKACCOUNTTYPE" />
+          <EntitySet Name="BANKS" EntityType="CallCenterAutomationModel.BANK" />
+          <EntitySet Name="COMPANIES" EntityType="CallCenterAutomationModel.COMPANy" />
+          <EntitySet Name="DEPARTMENTS" EntityType="CallCenterAutomationModel.DEPARTMENT" />
+          <EntitySet Name="EDUCATIONSTATUSES" EntityType="CallCenterAutomationModel.EDUCATIONSTATUS" />
+          <EntitySet Name="EMPLOYEES" EntityType="CallCenterAutomationModel.EMPLOYEE" />
+          <EntitySet Name="EMPLOYEETITLES" EntityType="CallCenterAutomationModel.EMPLOYEETITLE" />
+          <EntitySet Name="EXPECTATIONS" EntityType="CallCenterAutomationModel.EXPECTATION" />
+          <EntitySet Name="MARRIAGESTATUSES" EntityType="CallCenterAutomationModel.MARRIAGESTATUS" />
+          <EntitySet Name="PAYMENTS" EntityType="CallCenterAutomationModel.PAYMENT" />
+          <EntitySet Name="PROXIMITYDEGREES" EntityType="CallCenterAutomationModel.PROXIMITYDEGREE" />
+          <EntitySet Name="REQUESTHEADERS" EntityType="CallCenterAutomationModel.REQUESTHEADER" />
+          <EntitySet Name="REQUESTPROCESSES" EntityType="CallCenterAutomationModel.REQUESTPROCESS" />
+          <EntitySet Name="REQUESTS" EntityType="CallCenterAutomationModel.REQUEST" />
+          <EntitySet Name="REQUESTSTATUSES" EntityType="CallCenterAutomationModel.REQUESTSTATUS" />
+          <EntitySet Name="ROLEMASTERS" EntityType="CallCenterAutomationModel.ROLEMASTER" />
+          <EntitySet Name="TASKPROCESSES" EntityType="CallCenterAutomationModel.TASKPROCESS" />
+          <EntitySet Name="TASKSTATUSES" EntityType="CallCenterAutomationModel.TASKSTATUS" />
+          <EntitySet Name="USERROLEMAPPINGS" EntityType="CallCenterAutomationModel.USERROLEMAPPING" />
+          <EntitySet Name="USERS" EntityType="CallCenterAutomationModel.USER" />
+          <EntitySet Name="WORKINGSTATUSES" EntityType="CallCenterAutomationModel.WORKINGSTATUS" />
+          <AssociationSet Name="FK_TBL_EMPLOYEE_TBL_BANKACCOUNTTYPE" Association="CallCenterAutomationModel.FK_TBL_EMPLOYEE_TBL_BANKACCOUNTTYPE">
+            <End Role="BANKACCOUNTTYPE" EntitySet="BANKACCOUNTTYPES" />
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_EMPLOYEE_TBL_BANK" Association="CallCenterAutomationModel.FK_TBL_EMPLOYEE_TBL_BANK">
+            <End Role="BANK" EntitySet="BANKS" />
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_EMPLOYEE_TBL_COMPANY" Association="CallCenterAutomationModel.FK_TBL_EMPLOYEE_TBL_COMPANY">
+            <End Role="COMPANy" EntitySet="COMPANIES" />
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EXPECTATIONS_DEPARTMENTS" Association="CallCenterAutomationModel.FK_EXPECTATIONS_DEPARTMENTS">
+            <End Role="DEPARTMENT" EntitySet="DEPARTMENTS" />
+            <End Role="EXPECTATION" EntitySet="EXPECTATIONS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PAYMENTS_DEPARTMENTS" Association="CallCenterAutomationModel.FK_PAYMENTS_DEPARTMENTS">
+            <End Role="DEPARTMENT" EntitySet="DEPARTMENTS" />
+            <End Role="PAYMENT" EntitySet="PAYMENTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_EMPLOYEE_TBL_DEPARTMENT" Association="CallCenterAutomationModel.FK_TBL_EMPLOYEE_TBL_DEPARTMENT">
+            <End Role="DEPARTMENT" EntitySet="DEPARTMENTS" />
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_EMPLOYEE_TBL_EDUCATIONSTATUS" Association="CallCenterAutomationModel.FK_TBL_EMPLOYEE_TBL_EDUCATIONSTATUS">
+            <End Role="EDUCATIONSTATUS" EntitySet="EDUCATIONSTATUSES" />
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_EMPLOYEE_TBL_EMPLOYEETITLE" Association="CallCenterAutomationModel.FK_TBL_EMPLOYEE_TBL_EMPLOYEETITLE">
+            <End Role="EMPLOYEETITLE" EntitySet="EMPLOYEETITLES" />
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_EMPLOYEE_TBL_MARRIAGESTATUS" Association="CallCenterAutomationModel.FK_TBL_EMPLOYEE_TBL_MARRIAGESTATUS">
+            <End Role="MARRIAGESTATUS" EntitySet="MARRIAGESTATUSES" />
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_EMPLOYEE_TBL_PROXIMITYDEGREE" Association="CallCenterAutomationModel.FK_TBL_EMPLOYEE_TBL_PROXIMITYDEGREE">
+            <End Role="PROXIMITYDEGREE" EntitySet="PROXIMITYDEGREES" />
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_EMPLOYEE_TBL_WORKINGSTATUS" Association="CallCenterAutomationModel.FK_TBL_EMPLOYEE_TBL_WORKINGSTATUS">
+            <End Role="WORKINGSTATUS" EntitySet="WORKINGSTATUSES" />
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USERS_EMPLOYEES" Association="CallCenterAutomationModel.FK_USERS_EMPLOYEES">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEES" />
+            <End Role="USER" EntitySet="USERS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EXPECTATIONS_USERS" Association="CallCenterAutomationModel.FK_EXPECTATIONS_USERS">
+            <End Role="USER" EntitySet="USERS" />
+            <End Role="EXPECTATION" EntitySet="EXPECTATIONS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PAYMENTS_USERS" Association="CallCenterAutomationModel.FK_PAYMENTS_USERS">
+            <End Role="USER" EntitySet="USERS" />
+            <End Role="PAYMENT" EntitySet="PAYMENTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REQUESTS_REQUESTHEADERS" Association="CallCenterAutomationModel.FK_REQUESTS_REQUESTHEADERS">
+            <End Role="REQUESTHEADER" EntitySet="REQUESTHEADERS" />
+            <End Role="REQUEST" EntitySet="REQUESTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REQUESTPROCESSES_REQUESTS" Association="CallCenterAutomationModel.FK_REQUESTPROCESSES_REQUESTS">
+            <End Role="REQUEST" EntitySet="REQUESTS" />
+            <End Role="REQUESTPROCESS" EntitySet="REQUESTPROCESSES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REQUESTPROCESSES_USERS" Association="CallCenterAutomationModel.FK_REQUESTPROCESSES_USERS">
+            <End Role="USER" EntitySet="USERS" />
+            <End Role="REQUESTPROCESS" EntitySet="REQUESTPROCESSES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REQUESTS_REQUESTSTATUSES" Association="CallCenterAutomationModel.FK_REQUESTS_REQUESTSTATUSES">
+            <End Role="REQUESTSTATUS" EntitySet="REQUESTSTATUSES" />
+            <End Role="REQUEST" EntitySet="REQUESTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REQUESTS_USERS" Association="CallCenterAutomationModel.FK_REQUESTS_USERS">
+            <End Role="USER" EntitySet="USERS" />
+            <End Role="REQUEST" EntitySet="REQUESTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_USERROLEMAPPING_TBL_ROLEMASTER" Association="CallCenterAutomationModel.FK_TBL_USERROLEMAPPING_TBL_ROLEMASTER">
+            <End Role="ROLEMASTER" EntitySet="ROLEMASTERS" />
+            <End Role="USERROLEMAPPING" EntitySet="USERROLEMAPPINGS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TASKPROCESSES_USERS" Association="CallCenterAutomationModel.FK_TASKPROCESSES_USERS">
+            <End Role="USER" EntitySet="USERS" />
+            <End Role="TASKPROCESS" EntitySet="TASKPROCESSES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_USERROLEMAPPING_TBL_USER" Association="CallCenterAutomationModel.FK_TBL_USERROLEMAPPING_TBL_USER">
+            <End Role="USER" EntitySet="USERS" />
+            <End Role="USERROLEMAPPING" EntitySet="USERROLEMAPPINGS" />
+          </AssociationSet>
+          <EntitySet Name="TASKS" EntityType="CallCenterAutomationModel.TASK" />
+          <AssociationSet Name="FK_TASKPROCESSES_TASKS" Association="CallCenterAutomationModel.FK_TASKPROCESSES_TASKS">
+            <End Role="TASK" EntitySet="TASKS" />
+            <End Role="TASKPROCESS" EntitySet="TASKPROCESSES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TASKS_TASKSTATUSES" Association="CallCenterAutomationModel.FK_TASKS_TASKSTATUSES">
+            <End Role="TASKSTATUS" EntitySet="TASKSTATUSES" />
+            <End Role="TASK" EntitySet="TASKS" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="BANKACCOUNTTYPE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="EMPLOYEES" Relationship="CallCenterAutomationModel.FK_TBL_EMPLOYEE_TBL_BANKACCOUNTTYPE" FromRole="BANKACCOUNTTYPE" ToRole="EMPLOYEE" />
+        </EntityType>
+        <EntityType Name="BANK">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BankName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="EMPLOYEES" Relationship="CallCenterAutomationModel.FK_TBL_EMPLOYEE_TBL_BANK" FromRole="BANK" ToRole="EMPLOYEE" />
+        </EntityType>
+        <EntityType Name="COMPANy">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="EMPLOYEES" Relationship="CallCenterAutomationModel.FK_TBL_EMPLOYEE_TBL_COMPANY" FromRole="COMPANy" ToRole="EMPLOYEE" />
+        </EntityType>
+        <EntityType Name="DEPARTMENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="EXPECTATIONS" Relationship="CallCenterAutomationModel.FK_EXPECTATIONS_DEPARTMENTS" FromRole="DEPARTMENT" ToRole="EXPECTATION" />
+          <NavigationProperty Name="PAYMENTS" Relationship="CallCenterAutomationModel.FK_PAYMENTS_DEPARTMENTS" FromRole="DEPARTMENT" ToRole="PAYMENT" />
+          <NavigationProperty Name="EMPLOYEES" Relationship="CallCenterAutomationModel.FK_TBL_EMPLOYEE_TBL_DEPARTMENT" FromRole="DEPARTMENT" ToRole="EMPLOYEE" />
+        </EntityType>
+        <EntityType Name="EDUCATIONSTATUS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EducationStatusName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="EMPLOYEES" Relationship="CallCenterAutomationModel.FK_TBL_EMPLOYEE_TBL_EDUCATIONSTATUS" FromRole="EDUCATIONSTATUS" ToRole="EMPLOYEE" />
+        </EntityType>
+        <EntityType Name="EMPLOYEE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TCKNo" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeSurname" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDate" Type="DateTime" Precision="0" />
+          <Property Name="SocialSecurityNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProximityPhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="E_Mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfStartJob" Type="DateTime" Precision="0" />
+          <Property Name="IBAN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DegreeOfProximityID" Type="Int32" />
+          <Property Name="EducationStatusID" Type="Int32" />
+          <Property Name="BankID" Type="Int32" />
+          <Property Name="BankAccountTypeID" Type="Int32" />
+          <Property Name="CompanyID" Type="Int32" />
+          <Property Name="DepartmentID" Type="Int32" />
+          <Property Name="EmployeeTitleID" Type="Int32" />
+          <Property Name="MarriageStatusID" Type="Int32" />
+          <Property Name="WorkingStatusID" Type="Int32" />
+          <Property Name="isAnyUser" Type="Int32" />
+          <NavigationProperty Name="BANKACCOUNTTYPE" Relationship="CallCenterAutomationModel.FK_TBL_EMPLOYEE_TBL_BANKACCOUNTTYPE" FromRole="EMPLOYEE" ToRole="BANKACCOUNTTYPE" />
+          <NavigationProperty Name="BANK" Relationship="CallCenterAutomationModel.FK_TBL_EMPLOYEE_TBL_BANK" FromRole="EMPLOYEE" ToRole="BANK" />
+          <NavigationProperty Name="COMPANy" Relationship="CallCenterAutomationModel.FK_TBL_EMPLOYEE_TBL_COMPANY" FromRole="EMPLOYEE" ToRole="COMPANy" />
+          <NavigationProperty Name="DEPARTMENT" Relationship="CallCenterAutomationModel.FK_TBL_EMPLOYEE_TBL_DEPARTMENT" FromRole="EMPLOYEE" ToRole="DEPARTMENT" />
+          <NavigationProperty Name="EDUCATIONSTATUS" Relationship="CallCenterAutomationModel.FK_TBL_EMPLOYEE_TBL_EDUCATIONSTATUS" FromRole="EMPLOYEE" ToRole="EDUCATIONSTATUS" />
+          <NavigationProperty Name="EMPLOYEETITLE" Relationship="CallCenterAutomationModel.FK_TBL_EMPLOYEE_TBL_EMPLOYEETITLE" FromRole="EMPLOYEE" ToRole="EMPLOYEETITLE" />
+          <NavigationProperty Name="MARRIAGESTATUS" Relationship="CallCenterAutomationModel.FK_TBL_EMPLOYEE_TBL_MARRIAGESTATUS" FromRole="EMPLOYEE" ToRole="MARRIAGESTATUS" />
+          <NavigationProperty Name="PROXIMITYDEGREE" Relationship="CallCenterAutomationModel.FK_TBL_EMPLOYEE_TBL_PROXIMITYDEGREE" FromRole="EMPLOYEE" ToRole="PROXIMITYDEGREE" />
+          <NavigationProperty Name="WORKINGSTATUS" Relationship="CallCenterAutomationModel.FK_TBL_EMPLOYEE_TBL_WORKINGSTATUS" FromRole="EMPLOYEE" ToRole="WORKINGSTATUS" />
+          <NavigationProperty Name="USERS" Relationship="CallCenterAutomationModel.FK_USERS_EMPLOYEES" FromRole="EMPLOYEE" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="EMPLOYEETITLE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeTitleName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="EMPLOYEES" Relationship="CallCenterAutomationModel.FK_TBL_EMPLOYEE_TBL_EMPLOYEETITLE" FromRole="EMPLOYEETITLE" ToRole="EMPLOYEE" />
+        </EntityType>
+        <EntityType Name="EXPECTATION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="DepartmentID" Type="Int32" Nullable="false" />
+          <Property Name="FileNumber" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ExpectationAmount" Type="Int64" Nullable="false" />
+          <Property Name="AddingTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="DEPARTMENT" Relationship="CallCenterAutomationModel.FK_EXPECTATIONS_DEPARTMENTS" FromRole="EXPECTATION" ToRole="DEPARTMENT" />
+          <NavigationProperty Name="USER" Relationship="CallCenterAutomationModel.FK_EXPECTATIONS_USERS" FromRole="EXPECTATION" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="MARRIAGESTATUS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MarriageStatusName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="EMPLOYEES" Relationship="CallCenterAutomationModel.FK_TBL_EMPLOYEE_TBL_MARRIAGESTATUS" FromRole="MARRIAGESTATUS" ToRole="EMPLOYEE" />
+        </EntityType>
+        <EntityType Name="PAYMENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="DepartmentID" Type="Int32" Nullable="false" />
+          <Property Name="FileNumber" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PaymentAmount" Type="Int64" Nullable="false" />
+          <Property Name="AddingTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="DEPARTMENT" Relationship="CallCenterAutomationModel.FK_PAYMENTS_DEPARTMENTS" FromRole="PAYMENT" ToRole="DEPARTMENT" />
+          <NavigationProperty Name="USER" Relationship="CallCenterAutomationModel.FK_PAYMENTS_USERS" FromRole="PAYMENT" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="PROXIMITYDEGREE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProximityDegreeName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="EMPLOYEES" Relationship="CallCenterAutomationModel.FK_TBL_EMPLOYEE_TBL_PROXIMITYDEGREE" FromRole="PROXIMITYDEGREE" ToRole="EMPLOYEE" />
+        </EntityType>
+        <EntityType Name="REQUESTHEADER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Explanation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SolutionProposals" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
+          <NavigationProperty Name="REQUESTS" Relationship="CallCenterAutomationModel.FK_REQUESTS_REQUESTHEADERS" FromRole="REQUESTHEADER" ToRole="REQUEST" />
+        </EntityType>
+        <EntityType Name="REQUESTPROCESS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestID" Type="Int32" />
+          <Property Name="ResponsibleUserID" Type="Int32" />
+          <Property Name="SolutionNote" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProcessTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="REQUEST" Relationship="CallCenterAutomationModel.FK_REQUESTPROCESSES_REQUESTS" FromRole="REQUESTPROCESS" ToRole="REQUEST" />
+          <NavigationProperty Name="USER" Relationship="CallCenterAutomationModel.FK_REQUESTPROCESSES_USERS" FromRole="REQUESTPROCESS" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="REQUEST">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="RequestHeaderID" Type="Int32" />
+          <Property Name="RequestExplanation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AddedTime" Type="DateTime" Precision="3" />
+          <Property Name="Anydesk" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="DeskNumber" Type="Int16" />
+          <Property Name="InternalNumber" Type="Int16" />
+          <Property Name="RequestStatusID" Type="Int32" />
+          <NavigationProperty Name="REQUESTHEADER" Relationship="CallCenterAutomationModel.FK_REQUESTS_REQUESTHEADERS" FromRole="REQUEST" ToRole="REQUESTHEADER" />
+          <NavigationProperty Name="REQUESTPROCESSES" Relationship="CallCenterAutomationModel.FK_REQUESTPROCESSES_REQUESTS" FromRole="REQUEST" ToRole="REQUESTPROCESS" />
+          <NavigationProperty Name="REQUESTSTATUS" Relationship="CallCenterAutomationModel.FK_REQUESTS_REQUESTSTATUSES" FromRole="REQUEST" ToRole="REQUESTSTATUS" />
+          <NavigationProperty Name="USER" Relationship="CallCenterAutomationModel.FK_REQUESTS_USERS" FromRole="REQUEST" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="REQUESTSTATUS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
+          <NavigationProperty Name="REQUESTS" Relationship="CallCenterAutomationModel.FK_REQUESTS_REQUESTSTATUSES" FromRole="REQUESTSTATUS" ToRole="REQUEST" />
+        </EntityType>
+        <EntityType Name="ROLEMASTER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="USERROLEMAPPINGS" Relationship="CallCenterAutomationModel.FK_TBL_USERROLEMAPPING_TBL_ROLEMASTER" FromRole="ROLEMASTER" ToRole="USERROLEMAPPING" />
+        </EntityType>
+        <EntityType Name="TASKPROCESS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaskID" Type="Int32" />
+          <Property Name="LastProcessTime" Type="DateTime" Precision="3" />
+          <Property Name="ResponsibleUserID" Type="Int32" />
+          <Property Name="SolutionDetail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="USER" Relationship="CallCenterAutomationModel.FK_TASKPROCESSES_USERS" FromRole="TASKPROCESS" ToRole="USER" />
+          <NavigationProperty Name="TASK" Relationship="CallCenterAutomationModel.FK_TASKPROCESSES_TASKS" FromRole="TASKPROCESS" ToRole="TASK" />
+        </EntityType>
+        <EntityType Name="TASKSTATUS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TASKS" Relationship="CallCenterAutomationModel.FK_TASKS_TASKSTATUSES" FromRole="TASKSTATUS" ToRole="TASK" />
+        </EntityType>
+        <EntityType Name="USERROLEMAPPING">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ROLEMASTER" Relationship="CallCenterAutomationModel.FK_TBL_USERROLEMAPPING_TBL_ROLEMASTER" FromRole="USERROLEMAPPING" ToRole="ROLEMASTER" />
+          <NavigationProperty Name="USER" Relationship="CallCenterAutomationModel.FK_TBL_USERROLEMAPPING_TBL_USER" FromRole="USERROLEMAPPING" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="EMPLOYEE" Relationship="CallCenterAutomationModel.FK_USERS_EMPLOYEES" FromRole="USER" ToRole="EMPLOYEE" />
+          <NavigationProperty Name="EXPECTATIONS" Relationship="CallCenterAutomationModel.FK_EXPECTATIONS_USERS" FromRole="USER" ToRole="EXPECTATION" />
+          <NavigationProperty Name="PAYMENTS" Relationship="CallCenterAutomationModel.FK_PAYMENTS_USERS" FromRole="USER" ToRole="PAYMENT" />
+          <NavigationProperty Name="REQUESTPROCESSES" Relationship="CallCenterAutomationModel.FK_REQUESTPROCESSES_USERS" FromRole="USER" ToRole="REQUESTPROCESS" />
+          <NavigationProperty Name="REQUESTS" Relationship="CallCenterAutomationModel.FK_REQUESTS_USERS" FromRole="USER" ToRole="REQUEST" />
+          <NavigationProperty Name="TASKPROCESSES" Relationship="CallCenterAutomationModel.FK_TASKPROCESSES_USERS" FromRole="USER" ToRole="TASKPROCESS" />
+          <NavigationProperty Name="USERROLEMAPPINGS" Relationship="CallCenterAutomationModel.FK_TBL_USERROLEMAPPING_TBL_USER" FromRole="USER" ToRole="USERROLEMAPPING" />
+        </EntityType>
+        <EntityType Name="WORKINGSTATUS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="WorkingStatusName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="EMPLOYEES" Relationship="CallCenterAutomationModel.FK_TBL_EMPLOYEE_TBL_WORKINGSTATUS" FromRole="WORKINGSTATUS" ToRole="EMPLOYEE" />
+        </EntityType>
+        <Association Name="FK_TBL_EMPLOYEE_TBL_BANKACCOUNTTYPE">
+          <End Type="CallCenterAutomationModel.BANKACCOUNTTYPE" Role="BANKACCOUNTTYPE" Multiplicity="0..1" />
+          <End Type="CallCenterAutomationModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BANKACCOUNTTYPE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EMPLOYEE">
+              <PropertyRef Name="BankAccountTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_EMPLOYEE_TBL_BANK">
+          <End Type="CallCenterAutomationModel.BANK" Role="BANK" Multiplicity="0..1" />
+          <End Type="CallCenterAutomationModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BANK">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EMPLOYEE">
+              <PropertyRef Name="BankID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_EMPLOYEE_TBL_COMPANY">
+          <End Type="CallCenterAutomationModel.COMPANy" Role="COMPANy" Multiplicity="0..1" />
+          <End Type="CallCenterAutomationModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMPANy">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EMPLOYEE">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EXPECTATIONS_DEPARTMENTS">
+          <End Type="CallCenterAutomationModel.DEPARTMENT" Role="DEPARTMENT" Multiplicity="1" />
+          <End Type="CallCenterAutomationModel.EXPECTATION" Role="EXPECTATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTMENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EXPECTATION">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PAYMENTS_DEPARTMENTS">
+          <End Type="CallCenterAutomationModel.DEPARTMENT" Role="DEPARTMENT" Multiplicity="1" />
+          <End Type="CallCenterAutomationModel.PAYMENT" Role="PAYMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTMENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PAYMENT">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_EMPLOYEE_TBL_DEPARTMENT">
+          <End Type="CallCenterAutomationModel.DEPARTMENT" Role="DEPARTMENT" Multiplicity="0..1" />
+          <End Type="CallCenterAutomationModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTMENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EMPLOYEE">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_EMPLOYEE_TBL_EDUCATIONSTATUS">
+          <End Type="CallCenterAutomationModel.EDUCATIONSTATUS" Role="EDUCATIONSTATUS" Multiplicity="0..1" />
+          <End Type="CallCenterAutomationModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EDUCATIONSTATUS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EMPLOYEE">
+              <PropertyRef Name="EducationStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_EMPLOYEE_TBL_EMPLOYEETITLE">
+          <End Type="CallCenterAutomationModel.EMPLOYEETITLE" Role="EMPLOYEETITLE" Multiplicity="0..1" />
+          <End Type="CallCenterAutomationModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEETITLE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EMPLOYEE">
+              <PropertyRef Name="EmployeeTitleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_EMPLOYEE_TBL_MARRIAGESTATUS">
+          <End Type="CallCenterAutomationModel.MARRIAGESTATUS" Role="MARRIAGESTATUS" Multiplicity="0..1" />
+          <End Type="CallCenterAutomationModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MARRIAGESTATUS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EMPLOYEE">
+              <PropertyRef Name="MarriageStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_EMPLOYEE_TBL_PROXIMITYDEGREE">
+          <End Type="CallCenterAutomationModel.PROXIMITYDEGREE" Role="PROXIMITYDEGREE" Multiplicity="0..1" />
+          <End Type="CallCenterAutomationModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROXIMITYDEGREE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EMPLOYEE">
+              <PropertyRef Name="DegreeOfProximityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_EMPLOYEE_TBL_WORKINGSTATUS">
+          <End Type="CallCenterAutomationModel.WORKINGSTATUS" Role="WORKINGSTATUS" Multiplicity="0..1" />
+          <End Type="CallCenterAutomationModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WORKINGSTATUS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EMPLOYEE">
+              <PropertyRef Name="WorkingStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USERS_EMPLOYEES">
+          <End Type="CallCenterAutomationModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="1" />
+          <End Type="CallCenterAutomationModel.USER" Role="USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="USER">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EXPECTATIONS_USERS">
+          <End Type="CallCenterAutomationModel.USER" Role="USER" Multiplicity="1" />
+          <End Type="CallCenterAutomationModel.EXPECTATION" Role="EXPECTATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EXPECTATION">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PAYMENTS_USERS">
+          <End Type="CallCenterAutomationModel.USER" Role="USER" Multiplicity="1" />
+          <End Type="CallCenterAutomationModel.PAYMENT" Role="PAYMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PAYMENT">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REQUESTS_REQUESTHEADERS">
+          <End Type="CallCenterAutomationModel.REQUESTHEADER" Role="REQUESTHEADER" Multiplicity="0..1" />
+          <End Type="CallCenterAutomationModel.REQUEST" Role="REQUEST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REQUESTHEADER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="REQUEST">
+              <PropertyRef Name="RequestHeaderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REQUESTPROCESSES_REQUESTS">
+          <End Type="CallCenterAutomationModel.REQUEST" Role="REQUEST" Multiplicity="0..1" />
+          <End Type="CallCenterAutomationModel.REQUESTPROCESS" Role="REQUESTPROCESS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REQUEST">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="REQUESTPROCESS">
+              <PropertyRef Name="RequestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REQUESTPROCESSES_USERS">
+          <End Type="CallCenterAutomationModel.USER" Role="USER" Multiplicity="0..1" />
+          <End Type="CallCenterAutomationModel.REQUESTPROCESS" Role="REQUESTPROCESS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="REQUESTPROCESS">
+              <PropertyRef Name="ResponsibleUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REQUESTS_REQUESTSTATUSES">
+          <End Type="CallCenterAutomationModel.REQUESTSTATUS" Role="REQUESTSTATUS" Multiplicity="0..1" />
+          <End Type="CallCenterAutomationModel.REQUEST" Role="REQUEST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REQUESTSTATUS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="REQUEST">
+              <PropertyRef Name="RequestStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REQUESTS_USERS">
+          <End Type="CallCenterAutomationModel.USER" Role="USER" Multiplicity="0..1" />
+          <End Type="CallCenterAutomationModel.REQUEST" Role="REQUEST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="REQUEST">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_USERROLEMAPPING_TBL_ROLEMASTER">
+          <End Type="CallCenterAutomationModel.ROLEMASTER" Role="ROLEMASTER" Multiplicity="1" />
+          <End Type="CallCenterAutomationModel.USERROLEMAPPING" Role="USERROLEMAPPING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLEMASTER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="USERROLEMAPPING">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TASKPROCESSES_USERS">
+          <End Type="CallCenterAutomationModel.USER" Role="USER" Multiplicity="0..1" />
+          <End Type="CallCenterAutomationModel.TASKPROCESS" Role="TASKPROCESS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TASKPROCESS">
+              <PropertyRef Name="ResponsibleUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_USERROLEMAPPING_TBL_USER">
+          <End Type="CallCenterAutomationModel.USER" Role="USER" Multiplicity="1" />
+          <End Type="CallCenterAutomationModel.USERROLEMAPPING" Role="USERROLEMAPPING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="USERROLEMAPPING">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TASK">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TaskStatusID" Type="Int32" />
+          <Property Name="AddedTime" Type="DateTime" Precision="3" />
+          <Property Name="ResponsibleUsers" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentID" Type="Int32" />
+          <NavigationProperty Name="TASKPROCESSES" Relationship="CallCenterAutomationModel.FK_TASKPROCESSES_TASKS" FromRole="TASK" ToRole="TASKPROCESS" />
+          <NavigationProperty Name="TASKSTATUS" Relationship="CallCenterAutomationModel.FK_TASKS_TASKSTATUSES" FromRole="TASK" ToRole="TASKSTATUS" />
+        </EntityType>
+        <Association Name="FK_TASKPROCESSES_TASKS">
+          <End Type="CallCenterAutomationModel.TASK" Role="TASK" Multiplicity="0..1" />
+          <End Type="CallCenterAutomationModel.TASKPROCESS" Role="TASKPROCESS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TASK">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TASKPROCESS">
+              <PropertyRef Name="TaskID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TASKS_TASKSTATUSES">
+          <End Type="CallCenterAutomationModel.TASKSTATUS" Role="TASKSTATUS" Multiplicity="0..1" />
+          <End Type="CallCenterAutomationModel.TASK" Role="TASK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TASKSTATUS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TASK">
+              <PropertyRef Name="TaskStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CallCenterAutomationModelStoreContainer" CdmEntityContainer="CallCenterAutomationEntities1">
+          <EntitySetMapping Name="BANKACCOUNTTYPES">
+            <EntityTypeMapping TypeName="CallCenterAutomationModel.BANKACCOUNTTYPE">
+              <MappingFragment StoreEntitySet="BANKACCOUNTTYPES">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BANKS">
+            <EntityTypeMapping TypeName="CallCenterAutomationModel.BANK">
+              <MappingFragment StoreEntitySet="BANKS">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COMPANIES">
+            <EntityTypeMapping TypeName="CallCenterAutomationModel.COMPANy">
+              <MappingFragment StoreEntitySet="COMPANIES">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEPARTMENTS">
+            <EntityTypeMapping TypeName="CallCenterAutomationModel.DEPARTMENT">
+              <MappingFragment StoreEntitySet="DEPARTMENTS">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EDUCATIONSTATUSES">
+            <EntityTypeMapping TypeName="CallCenterAutomationModel.EDUCATIONSTATUS">
+              <MappingFragment StoreEntitySet="EDUCATIONSTATUSES">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="EducationStatusName" ColumnName="EducationStatusName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMPLOYEES">
+            <EntityTypeMapping TypeName="CallCenterAutomationModel.EMPLOYEE">
+              <MappingFragment StoreEntitySet="EMPLOYEES">
+                <ScalarProperty Name="isAnyUser" ColumnName="isAnyUser" />
+                <ScalarProperty Name="WorkingStatusID" ColumnName="WorkingStatusID" />
+                <ScalarProperty Name="MarriageStatusID" ColumnName="MarriageStatusID" />
+                <ScalarProperty Name="EmployeeTitleID" ColumnName="EmployeeTitleID" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="BankAccountTypeID" ColumnName="BankAccountTypeID" />
+                <ScalarProperty Name="BankID" ColumnName="BankID" />
+                <ScalarProperty Name="EducationStatusID" ColumnName="EducationStatusID" />
+                <ScalarProperty Name="DegreeOfProximityID" ColumnName="DegreeOfProximityID" />
+                <ScalarProperty Name="IBAN" ColumnName="IBAN" />
+                <ScalarProperty Name="DateOfStartJob" ColumnName="DateOfStartJob" />
+                <ScalarProperty Name="E_Mail" ColumnName="E-Mail" />
+                <ScalarProperty Name="ProximityPhoneNumber" ColumnName="ProximityPhoneNumber" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="SocialSecurityNumber" ColumnName="SocialSecurityNumber" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="EmployeeSurname" ColumnName="EmployeeSurname" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="TCKNo" ColumnName="TCKNo" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMPLOYEETITLES">
+            <EntityTypeMapping TypeName="CallCenterAutomationModel.EMPLOYEETITLE">
+              <MappingFragment StoreEntitySet="EMPLOYEETITLES">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="EmployeeTitleName" ColumnName="EmployeeTitleName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EXPECTATIONS">
+            <EntityTypeMapping TypeName="CallCenterAutomationModel.EXPECTATION">
+              <MappingFragment StoreEntitySet="EXPECTATIONS">
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="AddingTime" ColumnName="AddingTime" />
+                <ScalarProperty Name="ExpectationAmount" ColumnName="ExpectationAmount" />
+                <ScalarProperty Name="FileNumber" ColumnName="FileNumber" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MARRIAGESTATUSES">
+            <EntityTypeMapping TypeName="CallCenterAutomationModel.MARRIAGESTATUS">
+              <MappingFragment StoreEntitySet="MARRIAGESTATUSES">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="MarriageStatusName" ColumnName="MarriageStatusName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PAYMENTS">
+            <EntityTypeMapping TypeName="CallCenterAutomationModel.PAYMENT">
+              <MappingFragment StoreEntitySet="PAYMENTS">
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="AddingTime" ColumnName="AddingTime" />
+                <ScalarProperty Name="PaymentAmount" ColumnName="PaymentAmount" />
+                <ScalarProperty Name="FileNumber" ColumnName="FileNumber" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROXIMITYDEGREES">
+            <EntityTypeMapping TypeName="CallCenterAutomationModel.PROXIMITYDEGREE">
+              <MappingFragment StoreEntitySet="PROXIMITYDEGREES">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="ProximityDegreeName" ColumnName="ProximityDegreeName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REQUESTHEADERS">
+            <EntityTypeMapping TypeName="CallCenterAutomationModel.REQUESTHEADER">
+              <MappingFragment StoreEntitySet="REQUESTHEADERS">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="SolutionProposals" ColumnName="SolutionProposals" />
+                <ScalarProperty Name="Explanation" ColumnName="Explanation" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REQUESTPROCESSES">
+            <EntityTypeMapping TypeName="CallCenterAutomationModel.REQUESTPROCESS">
+              <MappingFragment StoreEntitySet="REQUESTPROCESSES">
+                <ScalarProperty Name="ProcessTime" ColumnName="ProcessTime" />
+                <ScalarProperty Name="SolutionNote" ColumnName="SolutionNote" />
+                <ScalarProperty Name="ResponsibleUserID" ColumnName="ResponsibleUserID" />
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REQUESTS">
+            <EntityTypeMapping TypeName="CallCenterAutomationModel.REQUEST">
+              <MappingFragment StoreEntitySet="REQUESTS">
+                <ScalarProperty Name="RequestStatusID" ColumnName="RequestStatusID" />
+                <ScalarProperty Name="InternalNumber" ColumnName="InternalNumber" />
+                <ScalarProperty Name="DeskNumber" ColumnName="DeskNumber" />
+                <ScalarProperty Name="Anydesk" ColumnName="Anydesk" />
+                <ScalarProperty Name="AddedTime" ColumnName="AddedTime" />
+                <ScalarProperty Name="RequestExplanation" ColumnName="RequestExplanation" />
+                <ScalarProperty Name="RequestHeaderID" ColumnName="RequestHeaderID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REQUESTSTATUSES">
+            <EntityTypeMapping TypeName="CallCenterAutomationModel.REQUESTSTATUS">
+              <MappingFragment StoreEntitySet="REQUESTSTATUSES">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ROLEMASTERS">
+            <EntityTypeMapping TypeName="CallCenterAutomationModel.ROLEMASTER">
+              <MappingFragment StoreEntitySet="ROLEMASTERS">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TASKPROCESSES">
+            <EntityTypeMapping TypeName="CallCenterAutomationModel.TASKPROCESS">
+              <MappingFragment StoreEntitySet="TASKPROCESSES">
+                <ScalarProperty Name="SolutionDetail" ColumnName="SolutionDetail" />
+                <ScalarProperty Name="ResponsibleUserID" ColumnName="ResponsibleUserID" />
+                <ScalarProperty Name="LastProcessTime" ColumnName="LastProcessTime" />
+                <ScalarProperty Name="TaskID" ColumnName="TaskID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TASKSTATUSES">
+            <EntityTypeMapping TypeName="CallCenterAutomationModel.TASKSTATUS">
+              <MappingFragment StoreEntitySet="TASKSTATUSES">
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERROLEMAPPINGS">
+            <EntityTypeMapping TypeName="CallCenterAutomationModel.USERROLEMAPPING">
+              <MappingFragment StoreEntitySet="USERROLEMAPPINGS">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERS">
+            <EntityTypeMapping TypeName="CallCenterAutomationModel.USER">
+              <MappingFragment StoreEntitySet="USERS">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WORKINGSTATUSES">
+            <EntityTypeMapping TypeName="CallCenterAutomationModel.WORKINGSTATUS">
+              <MappingFragment StoreEntitySet="WORKINGSTATUSES">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="WorkingStatusName" ColumnName="WorkingStatusName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TASKS">
+            <EntityTypeMapping TypeName="CallCenterAutomationModel.TASK">
+              <MappingFragment StoreEntitySet="TASKS">
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="ResponsibleUsers" ColumnName="ResponsibleUsers" />
+                <ScalarProperty Name="AddedTime" ColumnName="AddedTime" />
+                <ScalarProperty Name="TaskStatusID" ColumnName="TaskStatusID" />
+                <ScalarProperty Name="Detail" ColumnName="Detail" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

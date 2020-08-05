@@ -1,0 +1,138 @@
+﻿@using CallCenterAutomation.Models.Entity
+
+@model List<REQUEST>
+
+@{
+    ViewBag.Title = "EmployeeAllList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var loginUserNameSurname = Session["LoginUserNameSurname"];
+    var loginUserDepartmentID = (int)Session["LoginUserDepartmentID"];
+    var loginUserID = (int)Session["LoginUserID"];
+}
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-md-12 col-sm-12 ">
+            <div class="x_panel">
+                <div class="x_title">
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!-- small box -->
+                            <div class="col-lg-4 col-6">
+                                <div class="small-box bg-info">
+                                    <div class="inner">
+                                        <h3 style="color:white">@Model.Where(x => x.UserID == loginUserID).Count()</h3>
+                                        <p style="color:white"><strong>OLUŞTURDUĞUM <br />KAYITLAR</strong></p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fa fa-address-card"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- small box -->
+                            <div class="card-box table-responsive">
+
+                                <label class="float-right" style="color:red"><strong>İpucu:</strong> Eğer talebiniz 3 dakika içerisinde müdahale edilmeden düzelmişse veya talebinizi hatalı olarak ilettiyseniz talebinizi silebilirsiniz.</label>
+
+                                @Model.Where(x => x.UserID == loginUserID).Count() kayıt görüntüleniyor.
+                                <br />
+                                <table id="myRequests" class="table table-striped table-bordered" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th width="90">Talep No</th>
+                                            <th width="150">Talep Başlığı</th>
+                                            <th>Talep Detayı</th>
+                                            <th width="150">Oluşturulma Tarihi</th>
+                                            <th width="100">Anydesk</th>
+                                            <th width="75">Dahili</th>
+                                            <th width="90">Masa No</th>
+                                            <th width="100">Durum</th>
+                                            <th width="100">Detay</th>
+                                            <th width="80">Sil</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if (Model.Where(x => x.UserID == loginUserID).Count() == 0)
+                                        {
+                                            <tr>
+                                                <td colspan="10" style="color:red">
+                                                    Eşleşecek kayıt bulunamadı.
+                                                </td>
+                                            </tr>
+                                        }
+                                        else
+                                        {
+                                            foreach (var item in Model.Where(x => x.UserID == loginUserID))
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @item.ID
+                                                    </td>
+                                                    <td>
+                                                        @item.REQUESTHEADER.Name
+                                                    </td>
+                                                    <td>
+                                                        @item.RequestExplanation
+                                                    </td>
+                                                    <td>
+                                                        @item.AddedTime
+                                                    </td>
+                                                    <td>
+                                                        @item.Anydesk
+                                                    </td>
+                                                    <td>
+                                                        @item.InternalNumber
+                                                    </td>
+                                                    <td>
+                                                        @item.DeskNumber
+                                                    </td>
+                                                    <td>
+                                                        @if (item.REQUESTSTATUS.Name == "Açık Kayıt")
+                                                        {
+                                                            <button class="btn btn-success">Açık</button>
+                                                        }
+                                                        else if (item.REQUESTSTATUS.Name == "Çözüldü")
+                                                        {
+                                                            <button class="btn btn-danger">Kapalı</button>
+                                                        }
+                                                        else if (item.REQUESTSTATUS.Name == "İşlemde")
+                                                        {
+                                                            <button class="btn btn-warning">İşlemde</button>
+                                                        }
+                                                    </td>
+                                                    <td>
+                                                        @Html.ActionLink("Detay", "RequestDetail", new { id = item.ID }, new { @class = "btn btn-primary" })
+                                                    </td>
+                                                    <td>
+                                                        @if (item.REQUESTSTATUS.Name == "Açık Kayıt" && DateTime.Now.Day == item.AddedTime.Value.Day && DateTime.Now.Month == item.AddedTime.Value.Month && DateTime.Now.Year == item.AddedTime.Value.Year)
+                                                        {
+                                                            if (DateTime.Now.Hour - item.AddedTime.Value.Hour == 0 && DateTime.Now.Minute - item.AddedTime.Value.Minute < 3)
+                                                            {
+                                                                @Html.ActionLink("Sil", "DeleteMyRequest", new { item.ID }, new { @class = "btn btn-danger float-right", onclick = "return confirm('Silme işlemini onaylıyor musunuz?')" })
+                                                            }
+
+                                                        }
+
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                                @Model.Where(x => x.UserID == loginUserID).Count() kayıt görüntüleniyor.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
